@@ -108,6 +108,8 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
   double BatteryTemperature;
 
   if (ParseN2kPGN127508(N2kMsg, BatteryInstance, BatteryVoltage, BatteryCurrent, BatteryTemperature, SID)) {
+
+    // If main battery
     if (BatteryInstance == 0.0) {
       Serial.printf("Voltage: %3.1f V, Current: %3.1f A, Temp: %3.1f C\n", BatteryVoltage, BatteryCurrent, KelvinToC(BatteryTemperature)); 
     }
