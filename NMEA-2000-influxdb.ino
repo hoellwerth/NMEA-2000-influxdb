@@ -110,6 +110,9 @@ void setup() {
   }
   Serial.print("Connected to ");
   Serial.println(WIFI_SSID);
+
+  // Synchronize time with NTP servers and set timezone
+  timeSync("CET-1CEST,M3.5.0,M10.5.0/3", , "pool.ntp.org", "time.nis.gov");
 }
 
 void newNetwork() {
