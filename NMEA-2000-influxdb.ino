@@ -99,20 +99,36 @@ void setup() {
   NMEA2000.Open();
 
   delay(200);
+}
 
-  // Connect WiFi
+bool connectWifi() {
   Serial.println("Connecting to WiFi");
+
+  // Set Wifi to stationary mdoe
   WiFi.mode(WIFI_STA);
   wifiMulti.addAP(WIFI_SSID, WIFI_PASSWORD);
+  
   while (wifiMulti.run() != WL_CONNECTED) {
     Serial.print(".");
     delay(500);
   }
-  Serial.print("Connected to ");
-  Serial.println(WIFI_SSID);
+  // Try to connect 10 times
+  for (int i = 0; i < 11; i++) {
+    Serial.print(".");
+    delay(500);
+  }
 
-  // Synchronize time with NTP servers and set timezone
-  timeSync("CET-1CEST,M3.5.0,M10.5.0/3", , "pool.ntp.org", "time.nis.gov");
+  if (wifiMulti.run() == WL_CONNECTED) {
+    // Successfully connected
+    Serial.print("Connected to ");
+    Serial.println(WIFI_SSID);
+
+    // Synchronize time with NTP servers and set timezone
+    timeSync("CET-1CEST,M3.5.0,M10.5.0/3", , "pool.ntp.org", "time.nis.gov");
+    
+    return true;
+  }
+  return false;
 }
 
 void newNetwork() {
