@@ -121,10 +121,11 @@ void newNetwork() {
   if (client.validateConnection()) {
     Serial.print("Connected to InfluxDB: ");
     Serial.println(client.getServerUrl());
-  } else {
-    Serial.print("InfluxDB connection failed: ");
-    Serial.println(client.getLastErrorMessage());
+    return;
   }
+  
+  Serial.print("InfluxDB connection failed: ");
+  Serial.println(client.getLastErrorMessage());
 }
 
 void MsgHandler(const tN2kMsg &N2kMsg) {
