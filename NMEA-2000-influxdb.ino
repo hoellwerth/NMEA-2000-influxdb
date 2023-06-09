@@ -24,8 +24,8 @@
 #define INFLUXDB_ORG "554b5bb375690e45"
 #define INFLUXDB_BUCKET "boat"
 
-#define WIFI_SSID "JojoNet"
-#define WIFI_PASSWORD "Sennahoj08!?"
+#define WIFI_SSID ""
+#define WIFI_PASSWORD ""
 
 #include <WiFiMulti.h>
 #include <InfluxDbClient.h>
@@ -42,6 +42,7 @@ Preferences preferences;    // Nonvolatile storage on ESP32 - To store LastDevic
 
 // Create influxdb sensors
 Point mainBattery("main_battery");
+Point starterBattery("starter_battery");
 Point general("general");
 
 WiFiMulti wifiMulti;
@@ -163,6 +164,7 @@ void MyHandleNMEA2000Msg(const tN2kMsg &N2kMsg) {
 
   switch (N2kMsg.PGN) {
     case 127508L: handleBatteryStatus(N2kMsg);
+    case 127505L: handleFluidTanks(N2kMsg);
   }
 }
 
@@ -179,9 +181,9 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
 
     // If main battery
     if (BatteryInstance == 0.0) {
-      Serial.printf("MainBatter: (Voltage: %3.1f V, Current: %3.1f A, Temp: %3.1f C)\n", BatteryVoltage, BatteryCurrent, KelvinToC(BatteryTemperature));
+      Serial.printf("MainBattery: (Voltage: %3.1f V, Current: %3.1f A, Temp: %3.1f C)\n", BatteryVoltage, BatteryCurrent, KelvinToC(BatteryTemperature));
 
-      mainBattery.clearFields();
+      mainBattery.clearFields(); 
 
       mainBattery.addField("voltage", BatteryVoltage);
       mainBattery.addField("current", BatteryCurrent);
@@ -199,7 +201,46 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
         Serial.print("InfluxDB write failed: ");
         Serial.println(client.getLastErrorMessage());
       }
+
+      return;
     }
+
+    // If starter battery
+    if (BatteryInstance == 1.0) {
+      Serial.printf("Starter Battery: (Voltage: %3.1f V, Current: %3.1f A, Temp: %3.1f C)\n", BatteryVoltage, BatteryCurrent, KelvinToC(BatteryTemperature));
+
+      starterBattery.clearFields();
+
+      starterBattery.addField("voltage", BatteryVoltage);
+      starterBattery.addField("current", BatteryCurrent);
+      starterBattery.addField("temperature", KelvinToC(BatteryTemperature));
+      starterBattery.addField("power", BatteryVoltage * BatteryCurrent);
+
+      Serial.print("Writing: ");
+      Serial.println(client.pointToLineProtocol(starterBattery));
+
+      if (wifiMulti.run() != WL_CONNECTED) {
+        Serial.println("Wifi connection lost");
+      }
+
+      if (!client.writePoint(starterBattery)) {
+        Serial.print("InfluxDB write failed: ");
+        Serial.println(client.getLastErrorMessage());
+      }
+
+      return;
+    }
+  }
+}
+
+void handleFluidTanks(const tN2kMsg &N2kMsg) {
+  unsigned char Instance;
+  tN2kFluidType FluidType;
+  double Level;
+  double Capacity;
+
+  if (ParseN2kPGN127505(N2kMsg, Instance, FluidType, Level, Capacity)) {
+    Serial.printf("Fluid: Instance: %3.1f , FluiDtype: %3.1f , Capacity: %3.1f \n", Instance, FluidType, Level, Capacity);
   }
 }
 
