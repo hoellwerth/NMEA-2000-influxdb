@@ -24,8 +24,8 @@
 #define INFLUXDB_ORG "554b5bb375690e45"
 #define INFLUXDB_BUCKET "boat"
 
-#define WIFI_SSID ""
-#define WIFI_PASSWORD ""
+#define WIFI_SSID "JojoNet"
+#define WIFI_PASSWORD "Sennahoj08!?"
 
 #include <WiFiMulti.h>
 #include <InfluxDbClient.h>
@@ -133,10 +133,11 @@ bool connectWifi() {
       // Update influxdb connection
       newNetwork();
 
-      Serial.println("Unable to connect to a Wifi");
       return true;
     }
   }
+  
+  Serial.println("Unable to connect to a Wifi");
 
   return false;
 }
@@ -178,11 +179,13 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
 
     // If main battery
     if (BatteryInstance == 0.0) {
-      Serial.printf("Voltage: %3.1f V, Current: %3.1f A, Temp: %3.1f C\n", BatteryVoltage, BatteryCurrent, KelvinToC(BatteryTemperature));
+      Serial.printf("MainBatter: (Voltage: %3.1f V, Current: %3.1f A, Temp: %3.1f C)\n", BatteryVoltage, BatteryCurrent, KelvinToC(BatteryTemperature));
 
       mainBattery.clearFields();
 
       mainBattery.addField("voltage", BatteryVoltage);
+      mainBattery.addField("current", BatteryCurrent);
+      mainBattery.addField("temperature", KelvinToC(BatteryTemperature));
 
       Serial.print("Writing: ");
       Serial.println(client.pointToLineProtocol(mainBattery));
