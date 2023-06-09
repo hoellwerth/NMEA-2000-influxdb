@@ -186,6 +186,7 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
       mainBattery.addField("voltage", BatteryVoltage);
       mainBattery.addField("current", BatteryCurrent);
       mainBattery.addField("temperature", KelvinToC(BatteryTemperature));
+      mainBattery.addField("power", BatteryVoltage * BatteryCurrent);
 
       Serial.print("Writing: ");
       Serial.println(client.pointToLineProtocol(mainBattery));
