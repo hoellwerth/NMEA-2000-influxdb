@@ -24,8 +24,8 @@
 #define INFLUXDB_ORG "554b5bb375690e45"
 #define INFLUXDB_BUCKET "boat"
 
-#define WIFI_SSID ""
-#define WIFI_PASSWORD ""
+#define WIFI_SSID "JojoNet"
+#define WIFI_PASSWORD "Sennahoj08!?"
 
 #include <WiFiMulti.h>
 #include <InfluxDbClient.h>
@@ -61,6 +61,7 @@ const unsigned long ReceiveMessages[] PROGMEM = {/*126992L,*/ // System time
       130306L, // Wind
       128275L, // Log
       127245L, // Rudder
+      127505L, // Fluids
       0
     };
 
@@ -177,60 +178,62 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
   double BatteryCurrent;
   double BatteryTemperature;
 
-  if (ParseN2kPGN127508(N2kMsg, BatteryInstance, BatteryVoltage, BatteryCurrent, BatteryTemperature, SID)) {
-
-    // If main battery
-    if (BatteryInstance == 0.0) {
-      Serial.printf("MainBattery: (Voltage: %3.1f V, Current: %3.1f A, Temp: %3.1f C)\n", BatteryVoltage, BatteryCurrent, KelvinToC(BatteryTemperature));
-
-      mainBattery.clearFields(); 
-
-      mainBattery.addField("voltage", BatteryVoltage);
-      mainBattery.addField("current", BatteryCurrent);
-      mainBattery.addField("temperature", KelvinToC(BatteryTemperature));
-      mainBattery.addField("power", BatteryVoltage * BatteryCurrent);
-
-      Serial.print("Writing: ");
-      Serial.println(client.pointToLineProtocol(mainBattery));
-
-      if (wifiMulti.run() != WL_CONNECTED) {
-        Serial.println("Wifi connection lost");
-      }
-
-      if (!client.writePoint(mainBattery)) {
-        Serial.print("InfluxDB write failed: ");
-        Serial.println(client.getLastErrorMessage());
-      }
-
-      return;
-    }
-
-    // If starter battery
-    if (BatteryInstance == 1.0) {
-      Serial.printf("Starter Battery: (Voltage: %3.1f V, Current: %3.1f A, Temp: %3.1f C)\n", BatteryVoltage, BatteryCurrent, KelvinToC(BatteryTemperature));
-
-      starterBattery.clearFields();
-
-      starterBattery.addField("voltage", BatteryVoltage);
-      starterBattery.addField("current", BatteryCurrent);
-      starterBattery.addField("temperature", KelvinToC(BatteryTemperature));
-      starterBattery.addField("power", BatteryVoltage * BatteryCurrent);
-
-      Serial.print("Writing: ");
-      Serial.println(client.pointToLineProtocol(starterBattery));
-
-      if (wifiMulti.run() != WL_CONNECTED) {
-        Serial.println("Wifi connection lost");
-      }
-
-      if (!client.writePoint(starterBattery)) {
-        Serial.print("InfluxDB write failed: ");
-        Serial.println(client.getLastErrorMessage());
-      }
-
-      return;
-    }
+  if (!ParseN2kPGN127508(N2kMsg, BatteryInstance, BatteryVoltage, BatteryCurrent, BatteryTemperature, SID)) {
+    return;
   }
+
+  // If main battery
+  if (BatteryInstance == 0.0) {
+    Serial.printf("MainBattery: (Voltage: %3.1f V, Current: %3.1f A, Temp: %3.1f C)\n", BatteryVoltage, BatteryCurrent, KelvinToC(BatteryTemperature));
+
+    mainBattery.clearFields(); 
+
+    mainBattery.addField("voltage", BatteryVoltage);
+    mainBattery.addField("current", BatteryCurrent);
+    mainBattery.addField("temperature", KelvinToC(BatteryTemperature));
+    mainBattery.addField("power", BatteryVoltage * BatteryCurrent);
+
+    Serial.print("Writing: ");
+    Serial.println(client.pointToLineProtocol(mainBattery));
+
+    if (wifiMulti.run() != WL_CONNECTED) {
+      Serial.println("Wifi connection lost");
+    }
+
+    if (!client.writePoint(mainBattery)) {
+      Serial.print("InfluxDB write failed: ");
+      Serial.println(client.getLastErrorMessage());
+    }
+
+    return;
+  }
+
+  // If starter battery
+  if (BatteryInstance == 1.0) {
+    Serial.printf("Starter Battery: (Voltage: %3.1f V, Current: %3.1f A, Temp: %3.1f C)\n", BatteryVoltage, BatteryCurrent, KelvinToC(BatteryTemperature));
+
+    starterBattery.clearFields();
+
+    starterBattery.addField("voltage", BatteryVoltage);
+    starterBattery.addField("current", BatteryCurrent);
+    starterBattery.addField("temperature", KelvinToC(BatteryTemperature));
+    starterBattery.addField("power", BatteryVoltage * BatteryCurrent);
+
+    Serial.print("Writing: ");
+    Serial.println(client.pointToLineProtocol(starterBattery));
+
+    if (wifiMulti.run() != WL_CONNECTED) {
+      Serial.println("Wifi connection lost");
+    }
+
+    if (!client.writePoint(starterBattery)) {
+      Serial.print("InfluxDB write failed: ");
+      Serial.println(client.getLastErrorMessage());
+    }
+
+    return;
+  }
+  
 }
 
 void handleFluidTanks(const tN2kMsg &N2kMsg) {
@@ -239,8 +242,35 @@ void handleFluidTanks(const tN2kMsg &N2kMsg) {
   double Level;
   double Capacity;
 
-  if (ParseN2kPGN127505(N2kMsg, Instance, FluidType, Level, Capacity)) {
-    Serial.printf("Fluid: Instance: %3.1f , FluiDtype: %3.1f , Capacity: %3.1f \n", Instance, FluidType, Level, Capacity);
+  if (!ParseN2kPGN127505(N2kMsg, Instance, FluidType, Level, Capacity)) {
+    return;
+  }
+
+  Serial.printf("Fluid: Instance: %3.1f , FluidType: %3.1f , Level: %3.1f , Capacity: %3.1f \n", Instance, FluidType, Level, Capacity);
+
+  
+  // If left Diesel
+  if (FluidType == 74.3) {
+    Serial.printf("Left Diesel: FluidType: %3.1f, Level: %3.1f, Capacity: %3.1f \n", FluidType, Level, Capacity);
+    return;
+  }
+
+  // If right Diesel
+  if (FluidType == 0.0) {
+    Serial.printf("Right Diesel: FluidType: %3.1f, Level: %3.1f, Capacity: %3.1f \n", FluidType, Level, Capacity);
+    return;
+  }
+  
+  // If Left Water
+  if (FluidType == 13,) {
+    Serial.printf("Left Water: FluidType: %3.1f, Level: %3.1f, Capacity: %3.1f \n", FluidType, Level, Capacity);
+    return;
+  }
+
+  // If Right Water
+  if (FluidType == 14.7) {
+    Serial.printf("Right Water: FluidType: %3.1f, Level: %3.1f, Capacity: %3.1f \n", FluidType, Level, Capacity);
+    return;    
   }
 }
 
