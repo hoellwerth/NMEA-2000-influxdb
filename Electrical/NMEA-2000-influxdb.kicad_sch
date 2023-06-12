@@ -526,8 +526,8 @@
     (property "Datasheet" "~" (at 216.154 45.466 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 962b9475-fea8-472b-abeb-100187bde9d8))
-    (pin "2" (uuid e637053b-d89d-4712-84d9-552cf9682738))
+    (pin "1" (uuid 7c6a643d-a1f2-4c33-a37d-440020b71ea3))
+    (pin "2" (uuid 2ee98a59-b5a0-401f-bf58-a665747af2ba))
     (instances
       (project "NMEA-2000-influxdb"
         (path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
@@ -577,7 +577,7 @@
     (property "Datasheet" "" (at 236.474 37.846 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 673c3ebe-9d4c-4b7f-b1b7-cba1bf5a647f))
+    (pin "1" (uuid 676e307b-928c-4df2-9f2e-2a00521dae28))
     (instances
       (project "NMEA-2000-influxdb"
         (path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
@@ -602,8 +602,8 @@
     (property "Datasheet" "~" (at 236.474 45.466 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 4ec679d5-42fc-4335-87b5-26b480118b47))
-    (pin "2" (uuid 7012e719-c77b-4067-8427-caa08e6afd2a))
+    (pin "1" (uuid cb2f54d7-3c24-43d6-abf9-a284fe9a6fb8))
+    (pin "2" (uuid 206db01b-a29e-4fcf-ad85-42ab8086010f))
     (instances
       (project "NMEA-2000-influxdb"
         (path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
@@ -628,7 +628,7 @@
     (property "Datasheet" "" (at 226.314 53.086 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 97384031-4bfa-4feb-83e8-f6884335e727))
+    (pin "1" (uuid a6ba0345-5fbe-4c77-9184-d5168a1b4878))
     (instances
       (project "NMEA-2000-influxdb"
         (path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
@@ -653,7 +653,7 @@
     (property "Datasheet" "" (at 216.154 37.846 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 9723632e-b6d8-4656-bf66-029341f4f9bd))
+    (pin "1" (uuid b7895b9d-3654-46ea-ab0a-0316d89c749e))
     (instances
       (project "NMEA-2000-influxdb"
         (path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
@@ -780,9 +780,9 @@
     (property "Datasheet" "https://www.onsemi.cn/PowerSolutions/document/MC7800-D.PDF" (at 226.314 41.656 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid d04a9783-cd88-4fa3-a3de-6fd293a57d1a))
-    (pin "2" (uuid 70e992f6-ed0f-4781-a13f-4d873b1c84ae))
-    (pin "3" (uuid 62d0dce9-6d8c-470f-83ad-9af76d6b844c))
+    (pin "1" (uuid cf06e5f3-9ef5-4d2f-bf37-80e91840270d))
+    (pin "2" (uuid 54933176-71f3-4ed5-bc9b-3ae87fdc2922))
+    (pin "3" (uuid 4bcbf383-de5a-4e13-8f11-fc65fb8a501d))
     (instances
       (project "NMEA-2000-influxdb"
         (path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
