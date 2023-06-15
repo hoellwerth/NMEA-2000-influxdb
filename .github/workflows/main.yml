@@ -1,0 +1,17 @@
+# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/check-files-task.md
+name: Check Files
+
+# See: https://docs.github.com/actions/using-workflows/events-that-trigger-workflows
+on:
+  create:
+  push:
+  pull_request:
+
+jobs:
+  run-determination:
+    runs-on: ubuntu-latest
+    outputs:
+      result: ${{ steps.determination.outputs.result }}
+    steps:
+      - name: Compile Arduino Sketches
+        uses: arduino/compile-sketches@v1.1.0
