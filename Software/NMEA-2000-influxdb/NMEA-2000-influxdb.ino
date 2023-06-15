@@ -31,16 +31,19 @@
 #include <InfluxDbClient.h>
 #include <Arduino.h>
 #include <Preferences.h>
-#include <NMEA2000_CAN.h>  // This will automatically choose right CAN library and create suitable NMEA2000 object
+#include <NMEA2000_CAN.h>
 #include <N2kMessages.h>
 
 // Setup Influxdb Client
 InfluxDBClient client(INFLUXDB_URL, INFLUXDB_ORG, INFLUXDB_BUCKET, INFLUXDB_TOKEN);
 
-int NodeAddress;            // To store last Node Address
-Preferences preferences;    // Nonvolatile storage on ESP32 - To store LastDeviceAddress
+// To store last Node Address
+int NodeAddress;
 
-// Create influxdb sensors
+// Nonvolatile storage on ESP32 - To store LastDeviceAddress
+Preferences preferences;
+
+// Create influxdb sensor points
 Point mainBattery("main_battery");
 Point starterBattery("starter_battery");
 Point general("general");
@@ -165,7 +168,6 @@ void MyHandleNMEA2000Msg(const tN2kMsg &N2kMsg) {
 
   switch (N2kMsg.PGN) {
     case 127508L: handleBatteryStatus(N2kMsg);
-    case 127505L: handleFluidTanks(N2kMsg);
   }
 }
 
@@ -192,14 +194,18 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
     mainBattery.addField("current", BatteryCurrent);
     mainBattery.addField("temperature", KelvinToC(BatteryTemperature));
     mainBattery.addField("power", BatteryVoltage * BatteryCurrent);
-
-    Serial.print("Writing: ");
-    Serial.println(client.pointToLineProtocol(mainBattery));
-
-    if (wifiMulti.run() != WL_CONNECTED) {
+    
+    if (!online) {
+      // If not online
       Serial.println("Wifi connection lost");
     }
 
+    // If online 
+
+    // Write to influx
+    client.pointToLineProtocol(starterBattery);
+
+    // Catch errors
     if (!client.writePoint(mainBattery)) {
       Serial.print("InfluxDB write failed: ");
       Serial.println(client.getLastErrorMessage());
@@ -218,14 +224,18 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
     starterBattery.addField("current", BatteryCurrent);
     starterBattery.addField("temperature", KelvinToC(BatteryTemperature));
     starterBattery.addField("power", BatteryVoltage * BatteryCurrent);
-
-    Serial.print("Writing: ");
-    Serial.println(client.pointToLineProtocol(starterBattery));
-
-    if (wifiMulti.run() != WL_CONNECTED) {
+    
+    if (!online) {
+      // If not online
       Serial.println("Wifi connection lost");
     }
 
+    // If online 
+
+    // Write to influx
+    client.pointToLineProtocol(starterBattery);
+
+    // Catch errors
     if (!client.writePoint(starterBattery)) {
       Serial.print("InfluxDB write failed: ");
       Serial.println(client.getLastErrorMessage());
@@ -236,47 +246,13 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
   
 }
 
-void handleFluidTanks(const tN2kMsg &N2kMsg) {
-  unsigned char Instance;
-  tN2kFluidType FluidType;
-  double Level;
-  double Capacity;
 
-  if (!ParseN2kPGN127505(N2kMsg, Instance, FluidType, Level, Capacity)) {
     return;
   }
 
-  Serial.printf("Fluid: Instance: %3.1f , FluidType: %3.1f , Level: %3.1f , Capacity: %3.1f \n", Instance, FluidType, Level, Capacity);
-
-  
-  // If left Diesel
-  if (FluidType == 74.3) {
-    Serial.printf("Left Diesel: FluidType: %3.1f, Level: %3.1f, Capacity: %3.1f \n", FluidType, Level, Capacity);
-    return;
-  }
-
-  // If right Diesel
-  if (FluidType == 0.0) {
-    Serial.printf("Right Diesel: FluidType: %3.1f, Level: %3.1f, Capacity: %3.1f \n", FluidType, Level, Capacity);
-    return;
-  }
-  
-  // If Left Water
-  if (FluidType == 13,) {
-    Serial.printf("Left Water: FluidType: %3.1f, Level: %3.1f, Capacity: %3.1f \n", FluidType, Level, Capacity);
-    return;
-  }
-
-  // If Right Water
-  if (FluidType == 14.7) {
-    Serial.printf("Right Water: FluidType: %3.1f, Level: %3.1f, Capacity: %3.1f \n", FluidType, Level, Capacity);
-    return;    
-  }
 }
 
-
 // Function to check if SourceAddress has changed (due to address conflict on bus)
-
 void CheckSourceAddressChange() {
   int SourceAddress = NMEA2000.GetN2kSource();
 
@@ -293,12 +269,15 @@ void CheckSourceAddressChange() {
 //*****************************************************************************
 void loop() {
 
+  // If not online - try connecting to a wifi
   if (!online) {
     online = connectWifi();
   }
 
+  // Parse the N2k messages
   NMEA2000.ParseMessages();
 
+  // Check if adress has changed
   CheckSourceAddressChange();
 
   // Dummy to empty input buffer to avoid board to stuck with e.g. NMEA Reader
