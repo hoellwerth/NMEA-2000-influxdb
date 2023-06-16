@@ -37,7 +37,8 @@ WiFiMulti wifiMulti;
 bool online = false;
 
 // Set the information for other bus devices, which messages we support
-const unsigned long ReceiveMessages[] PROGMEM = {/*126992L,*/ // System time
+const unsigned long ReceiveMessages[] PROGMEM = {
+      126992L, // System time
       127250L, // Heading
       127258L, // Magnetic variation
       128259L, // Boat speed
@@ -231,7 +232,6 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
     return;
   }
   
-}
 }
 
 // Function to check if SourceAddress has changed (due to address conflict on bus)
