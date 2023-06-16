@@ -1,19 +1,3 @@
-/*
-  This code is free software; you can redistribute it and/or
-  modify it under the terms of the GNU Lesser General Public
-  License as published by the Free Software Foundation; either
-  version 2.1 of the License, or (at your option) any later version.
-  This code is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-  Lesser General Public License for more details.
-  You should have received a copy of the GNU Lesser General Public
-  License along with this library; if not, write to the Free Software
-  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-*/
-
-// Lesen von PGNs vom NMEA2000-Bus
-// Version 0.1, 08.01.2021, AK-Homberger
 #define DEVICE "ESP32"
 
 #define ESP32_CAN_TX_PIN GPIO_NUM_5  // Set CAN TX port to 5 
@@ -78,6 +62,9 @@ void setup() {
   // Init USB serial port
   Serial.begin(115200);
   delay(10);
+
+  // Enable client side influxdb timestamps - set time precision to milliseconds
+  client.setWriteOptions(WriteOptions().writePrecision(WritePrecision::MS));
 
   // Reserve enough buffer for sending all messages.
   NMEA2000.SetN2kCANMsgBufSize(8);
@@ -245,11 +232,6 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
   }
   
 }
-
-
-    return;
-  }
-
 }
 
 // Function to check if SourceAddress has changed (due to address conflict on bus)
