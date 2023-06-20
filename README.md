@@ -20,3 +20,7 @@ An esp32 which posts traffic in the NMEA 2000 BUS to an InfluxDB 2.7 instance
 ## Contribution
 
 If you want to help with a feature or ad something, just fork the repository, make your changes and open a Pull Request
+
+## License
+
+This project ist licensed under the [GNU GENERAL PUBLIC LICENSE](/LICENSE)
