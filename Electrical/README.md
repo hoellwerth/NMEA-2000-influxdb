@@ -1,6 +1,6 @@
 # Electrical
 
-## Material
+## Hardware
 
 - ESP32 NodeMCU [AZ-Delivery](https://www.az-delivery.de/collections/esp32/products/esp32-developmentboard)
 - CAN-Transeiver (SN65HVD230) [Eckstein](https://eckstein-shop.de/Waveshare-SN65HVD230-CAN-Transceiver-Board-33V-ESD-Protection)
