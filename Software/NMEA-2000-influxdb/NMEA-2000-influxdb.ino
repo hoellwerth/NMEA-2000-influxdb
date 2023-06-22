@@ -1,6 +1,6 @@
 #define DEVICE "ESP32"
 
-#define ESP32_CAN_TX_PIN GPIO_NUM_5  // Set CAN TX port to 5 
+#define ESP32_CAN_TX_PIN GPIO_NUM_17  // Set CAN TX port to 17
 #define ESP32_CAN_RX_PIN GPIO_NUM_4  // Set CAN RX port to 4
 
 #define INFLUXDB_URL "http://cloud.baumistlustig.eu:8086"
@@ -38,6 +38,9 @@ Point general("general");
 WiFiMulti wifiMulti;
 
 bool online = false;
+
+unsigned long previousMillis = 0;
+unsigned long interval = 30000;
 
 // Set the information for other bus devices, which messages we support
 const unsigned long ReceiveMessages[] PROGMEM = {
@@ -105,6 +108,10 @@ void setup() {
 
   NMEA2000.Open();
   delay(200);
+
+  setupSD();
+
+  connectWifi();
 }
 
 bool connectWifi() {
@@ -114,23 +121,21 @@ bool connectWifi() {
   WiFi.mode(WIFI_STA);
   wifiMulti.addAP(WIFI_SSID, WIFI_PASSWORD);
 
-  // Try to connect 10 times
-  for (int i = 0; i < 11; i++) {
-    Serial.print(".");
+  // Try to connect
+  Serial.print(".");
 
-    if (wifiMulti.run() == WL_CONNECTED) {
-       // Successfully connected
-      Serial.print("Connected to ");
-      Serial.println(WiFi.SSID());
+  if (wifiMulti.run() == WL_CONNECTED) {
+    // Successfully connected
+    Serial.print("Connected to ");
+    Serial.println(WiFi.SSID());
 
-      // Synchronize time with NTP servers and set timezone
-      timeSync("CET-1CEST,M3.5.0,M10.5.0/3", "pool.ntp.org", "time.nis.gov");
+    // Synchronize time with NTP servers and set timezone
+    timeSync("CET-1CEST,M3.5.0,M10.5.0/3", "pool.ntp.org", "time.nis.gov");
 
-      // Update influxdb connection
-      newNetwork();
+    // Update influxdb connection
+    newNetwork();
 
-      return true;
-    }
+    return true;
   }
   
   Serial.println("Unable to connect to a Wifi");
@@ -185,13 +190,6 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
     mainBattery.addField("current", BatteryCurrent);
     mainBattery.addField("temperature", KelvinToC(BatteryTemperature));
     mainBattery.addField("power", BatteryVoltage * BatteryCurrent);
-    
-    if (!online) {
-      // If not online
-      Serial.println("Wifi connection lost");
-    }
-
-    // If online 
 
     // Write to influx
     client.pointToLineProtocol(starterBattery);
@@ -200,6 +198,14 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
     if (!client.writePoint(mainBattery)) {
       Serial.print("InfluxDB write failed: ");
       Serial.println(client.getLastErrorMessage());
+
+      char message[200];
+
+      sprintf(message, "%2.13f", BatteryVoltage);
+
+      appendFile(SD, "/log.txt", "MainBattery Voltage: ");
+      appendFile(SD, "/log.txt", message);
+      appendFile(SD, "/log.txt", "\n");
     }
 
     return;
@@ -216,13 +222,6 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
     starterBattery.addField("temperature", KelvinToC(BatteryTemperature));
     starterBattery.addField("power", BatteryVoltage * BatteryCurrent);
     
-    if (!online) {
-      // If not online
-      Serial.println("Wifi connection lost");
-    }
-
-    // If online 
-
     // Write to influx
     client.pointToLineProtocol(starterBattery);
 
@@ -230,6 +229,14 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
     if (!client.writePoint(starterBattery)) {
       Serial.print("InfluxDB write failed: ");
       Serial.println(client.getLastErrorMessage());
+
+      char message[200];
+
+      sprintf(message, "%2.13f", BatteryVoltage);
+
+      appendFile(SD, "/log.txt", "StarterBattery Voltage: ");
+      appendFile(SD, "/log.txt", message);
+      appendFile(SD, "/log.txt", "\n");
     }
 
     return;
@@ -240,6 +247,8 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
 // Writes to the SD-Card in Json format
 void writeToBuffer(String time, int data) {
   // Read existing json from SD-Card
+
+  
 }
 
 // Writes entire data from SD-Card to influxdb
@@ -265,8 +274,15 @@ void CheckSourceAddressChange() {
 void loop() {
 
   // If not online - try connecting to a wifi
-  if (!online) {
-    online = connectWifi();
+  unsigned long currentMillis = millis();
+
+  // if WiFi is down, try reconnecting
+  if ((WiFi.status() != WL_CONNECTED) && (currentMillis - previousMillis >=interval)) {
+    Serial.print(millis());
+    Serial.println("Reconnecting to WiFi...");
+    WiFi.disconnect();
+    WiFi.reconnect();
+    previousMillis = currentMillis;
   }
 
   // Parse the N2k messages
@@ -281,7 +297,37 @@ void loop() {
   }
 }
 
-// ----------------- File System -----------------
+// ----------------- SD-Card -----------------
+
+void setupSD() {
+  if(!SD.begin(5)){
+    Serial.println("Card Mount Failed");
+    return;
+  }
+
+  uint8_t cardType = SD.cardType();
+
+  if(cardType == CARD_NONE){
+    Serial.println("No SD card attached");
+    return;
+  }
+
+  Serial.print("SD Card Type: ");
+  if(cardType == CARD_MMC){
+    Serial.println("MMC");
+  } else if(cardType == CARD_SD){
+    Serial.println("SDSC");
+  } else if(cardType == CARD_SDHC){
+    Serial.println("SDHC");
+  } else {
+    Serial.println("UNKNOWN");
+  }
+
+  uint64_t cardSize = SD.cardSize() / (1024 * 1024);
+  Serial.printf("SD Card Size: %lluMB\n", cardSize);
+
+  writeFile(SD, "/log.txt", "Start\n\n");
+}
 
 void listDir(fs::FS &fs, const char * dirname, uint8_t levels){
   Serial.printf("Listing directory: %s\n", dirname);
