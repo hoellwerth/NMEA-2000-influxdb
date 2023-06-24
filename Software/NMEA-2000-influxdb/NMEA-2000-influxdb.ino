@@ -42,6 +42,8 @@ bool online = false;
 unsigned long previousMillis = 0;
 unsigned long interval = 30000;
 
+bool previous = false;
+
 // Set the information for other bus devices, which messages we support
 const unsigned long ReceiveMessages[] PROGMEM = {
       126992L, // System time
@@ -184,6 +186,11 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
   if (BatteryInstance == 0.0) {
     Serial.printf("MainBattery: (Voltage: %3.1f V, Current: %3.1f A, Temp: %3.1f C)\n", BatteryVoltage, BatteryCurrent, KelvinToC(BatteryTemperature));
 
+    if (wifiMulti.run() == WL_CONNECTED && previous) {
+      previous = false;
+      writeFromBuffer();
+    }
+
     mainBattery.clearFields(); 
 
     mainBattery.addField("voltage", BatteryVoltage);
@@ -215,6 +222,11 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
   if (BatteryInstance == 1.0) {
     Serial.printf("Starter Battery: (Voltage: %3.1f V, Current: %3.1f A, Temp: %3.1f C)\n", BatteryVoltage, BatteryCurrent, KelvinToC(BatteryTemperature));
 
+    if (wifiMulti.run() == WL_CONNECTED && previous) {
+      previous = false;
+      writeFromBuffer();
+    }
+
     starterBattery.clearFields();
 
     starterBattery.addField("voltage", BatteryVoltage);
@@ -224,6 +236,8 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
     
     // Write to influx
     client.pointToLineProtocol(starterBattery);
+
+    Serial.println(wifiMulti.run());
 
     // Catch errors
     if (!client.writePoint(starterBattery)) {
@@ -244,16 +258,9 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
   
 }
 
-// Writes to the SD-Card in Json format
-void writeToBuffer(String time, int data) {
-  // Read existing json from SD-Card
-
-  
-}
-
 // Writes entire data from SD-Card to influxdb
 void writeFromBuffer() {
-
+  readFile(SD, "/log.txt");
 }
 
 // Function to check if SourceAddress has changed (due to address conflict on bus)
@@ -277,12 +284,14 @@ void loop() {
   unsigned long currentMillis = millis();
 
   // if WiFi is down, try reconnecting
-  if ((WiFi.status() != WL_CONNECTED) && (currentMillis - previousMillis >=interval)) {
+  if ((wifiMulti.run() != WL_CONNECTED) && (currentMillis - previousMillis >=interval)) {
     Serial.print(millis());
     Serial.println("Reconnecting to WiFi...");
     WiFi.disconnect();
     WiFi.reconnect();
     previousMillis = currentMillis;
+
+    previous = true;
   }
 
   // Parse the N2k messages
