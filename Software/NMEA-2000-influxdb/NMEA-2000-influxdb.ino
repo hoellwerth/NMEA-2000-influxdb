@@ -237,8 +237,6 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
     // Write to influx
     client.pointToLineProtocol(starterBattery);
 
-    Serial.println(wifiMulti.run());
-
     // Catch errors
     if (!client.writePoint(starterBattery)) {
       Serial.print("InfluxDB write failed: ");
