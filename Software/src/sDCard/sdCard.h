@@ -11,7 +11,7 @@ void createDir(fs::FS &fs, const char * path);
 
 void removeDir(fs::FS &fs, const char * path);
 
-String readFile(fs::FS &fs, const char * path);
+const char* readFile(fs::FS &fs, const char * path);
 
 void writeFile(fs::FS &fs, const char * path, const char * message);
 

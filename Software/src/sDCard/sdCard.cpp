@@ -54,7 +54,7 @@ void removeDir(fs::FS &fs, const char * path){
   }
 }
 
-String readFile(fs::FS &fs, const char * path) {
+const char* readFile(fs::FS &fs, const char * path) {
   Serial.printf("Reading file: %s\n", path);
 
   File file = fs.open(path);
@@ -63,11 +63,11 @@ String readFile(fs::FS &fs, const char * path) {
     return "";
   }
 
-  String content;
+  const char* content = new char[file.size()];
 
   Serial.print("Read from file: ");
   if(file.available()){
-    content = file.readString();
+    content = file.readString().c_str();
   }
 
   file.close();
