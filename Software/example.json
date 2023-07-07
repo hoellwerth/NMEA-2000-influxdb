@@ -1,0 +1,78 @@
+{
+  "main_battery": {
+    "voltage": [
+      {
+        "time": "1337",
+        "data": 13.2
+      },
+      {
+        "time": "1338",
+        "data": 14.1
+      }
+    ],
+    "current": [
+      {
+        "time": "1337",
+        "data": 5.1
+      },
+      {
+        "time": "1338",
+        "data": 5.2
+      }
+    ],
+    "temperature": [
+      {
+        "time": "1337",
+        "data": 26.8
+      },
+      {
+        "time": "1338",
+        "data": 26.9
+      }
+    ]
+  },
+  "starter_battery": {
+    "voltage": [
+      {
+        "time": "1337",
+        "data": 14.7
+      },
+      {
+        "time": "1338",
+        "data": 15.2
+      }
+    ],
+    "current": [
+      {
+        "time": "1337",
+        "data": 1.7
+      },
+      {
+        "time": "1338",
+        "data": 2.1
+      }
+    ],
+    "temperature": [
+      {
+        "time": "1337",
+        "data": 27.7
+      },
+      {
+        "time": "1338",
+        "data": 27.6
+      }
+    ]
+  },
+  "general": {
+    "rssi": [
+      {
+        "time": "1337",
+        "data": 30
+      },
+      {
+        "time": "1338",
+        "data": 29.9
+      }
+    ]
+  }
+}
