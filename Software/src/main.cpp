@@ -114,25 +114,87 @@ void writeToBuffer() {
 
 // Writes entire data from SD-Card to influxdb
 void writeFromBuffer() {
-  String data = readFile(SD, "/example.json");
+  Serial.println("Writing from buffer");
 
-  Serial.println(data);
+  // const char* data = readFile(SD, "/example.json");
 
-  DynamicJsonDocument doc(1001024);
-  deserializeJson(doc, data);
+  const char* data = "{\"main_battery\":{\"voltage\":[{\"time\":\"1337\",\"data\":13.2},{\"time\":\"1338\",\"data\":14.1}],\"current\":[{\"time\":\"1337\",\"data\":5.1},{\"time\":\"1338\",\"data\":5.2}],\"temperature\":[{\"time\":\"1337\",\"data\":26.8},{\"time\":\"1338\",\"data\":26.9}]},\"starter_battery\":{\"voltage\":[{\"time\":\"1337\",\"data\":14.7},{\"time\":\"1338\",\"data\":15.2}],\"current\":[{\"time\":\"1337\",\"data\":1.7},{\"time\":\"1338\",\"data\":2.1}],\"temperature\":[{\"time\":\"1337\",\"data\":27.7},{\"time\":\"1338\",\"data\":27.6}]},\"general\":{\"rssi\":[{\"time\":\"1337\",\"data\":30},{\"time\":\"1338\",\"data\":29.9}]}}";
+  StaticJsonDocument<1024> doc;
 
-  JsonObject obj = doc.as<JsonObject>();
+  DeserializationError error = deserializeJson(doc, data);
 
-  for (JsonObject::iterator it=obj.begin(); it!=obj.end(); ++it) {
-    it->key(); // is a JsonString
-    it->value(); // is a JsonVariant
+  if (error) {
+    Serial.print("deserializeJson() failed: ");
+    Serial.println(error.c_str());
+    return;
   }
 
-  char buffer[1001024];
+  JsonObject main_battery = doc["main_battery"];
 
-  sprintf(buffer, "%2.13f", doc["main_battery"]);
+  for (JsonObject main_battery_voltage_item : main_battery["voltage"].as<JsonArray>()) {
 
-  Serial.println(buffer);
+    const char* main_battery_voltage_item_time = main_battery_voltage_item["time"]; // "1337", "1338"
+    float main_battery_voltage_item_data = main_battery_voltage_item["data"]; // 13.2, 14.1
+    
+    Serial.println(main_battery_voltage_item_time);
+    Serial.println(main_battery_voltage_item_data);
+  }
+
+  for (JsonObject main_battery_current_item : main_battery["current"].as<JsonArray>()) {
+
+    const char* main_battery_current_item_time = main_battery_current_item["time"]; // "1337", "1338"
+    float main_battery_current_item_data = main_battery_current_item["data"]; // 5.1, 5.2
+
+    Serial.println(main_battery_current_item_time);
+    Serial.println(main_battery_current_item_data);
+  }
+
+  for (JsonObject main_battery_temperature_item : main_battery["temperature"].as<JsonArray>()) {
+
+    const char* main_battery_temperature_item_time = main_battery_temperature_item["time"]; // "1337", ...
+    float main_battery_temperature_item_data = main_battery_temperature_item["data"]; // 26.8, 26.9
+
+    Serial.println(main_battery_temperature_item_time);
+    Serial.println(main_battery_temperature_item_data);
+  }
+
+  JsonObject starter_battery = doc["starter_battery"];
+
+  for (JsonObject starter_battery_voltage_item : starter_battery["voltage"].as<JsonArray>()) {
+
+    const char* starter_battery_voltage_item_time = starter_battery_voltage_item["time"]; // "1337", "1338"
+    float starter_battery_voltage_item_data = starter_battery_voltage_item["data"]; // 14.7, 15.2
+
+    Serial.println(starter_battery_voltage_item_time);
+    Serial.println(starter_battery_voltage_item_data);
+  }
+
+  for (JsonObject starter_battery_current_item : starter_battery["current"].as<JsonArray>()) {
+
+    const char* starter_battery_current_item_time = starter_battery_current_item["time"]; // "1337", "1338"
+    float starter_battery_current_item_data = starter_battery_current_item["data"]; // 1.7, 2.1
+
+    Serial.println(starter_battery_current_item_time);
+    Serial.println(starter_battery_current_item_data);
+  }
+
+  for (JsonObject starter_battery_temperature_item : starter_battery["temperature"].as<JsonArray>()) {
+
+    const char* starter_battery_temperature_item_time = starter_battery_temperature_item["time"]; // "1337", ...
+    float starter_battery_temperature_item_data = starter_battery_temperature_item["data"]; // 27.7, 27.6
+
+    Serial.println(starter_battery_temperature_item_time);
+    Serial.println(starter_battery_temperature_item_data);
+  }
+
+  for (JsonObject general_rssi_item : doc["general"]["rssi"].as<JsonArray>()) {
+
+    const char* general_rssi_item_time = general_rssi_item["time"]; // "1337", "1338"
+    float general_rssi_item_data = general_rssi_item["data"]; // 30, 29.9
+
+    Serial.println(general_rssi_item_time);
+    Serial.println(general_rssi_item_data);
+  }
   
   /*
   // Write data to influxdb
