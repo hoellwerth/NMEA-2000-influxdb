@@ -104,12 +104,21 @@ bool connectWifi() {
 }
 
 // Write data to buffer
-void writeToBuffer() {
-  // Read current json document
-  /*char json[] = readFile(SD, "/log.json");
+void writeToBuffer(time_t timestamp, const char* data, const char* path) {
+  // Append data to SD-Card
+  char timestampString[20];
+  sprintf(timestampString, "%2.13f", timestamp);
 
-  DynamicJsonDocument doc(1024);
-  deserializeJson(doc, json);*/
+  char* timestampPath = { new char[strlen(path) + strlen("_timestamps.txt") + 1] };
+  timestampPath = strcat(timestampPath, path);
+  timestampPath = strcat(timestampPath, "_timestamps.txt");
+
+  char* dataPath = { new char[strlen(path) + strlen("_data.txt") + 1] };
+  dataPath = strcat(dataPath, path);
+  dataPath = strcat(dataPath, "_data.txt");
+
+  appendFile(SD, timestampPath, timestampString);
+  appendFile(SD, dataPath, data);
 }
 
 // Writes entire data from SD-Card to influxdb
