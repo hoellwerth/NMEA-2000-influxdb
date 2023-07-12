@@ -11,7 +11,7 @@
 
 ## Introduction
 
-This scipt is based on PlatformIO and will read all the data in the NMEA-2000 (N2k) BUS and will send it to an InfluxDB database. As this thing will be mainly operated in a marine environment, it will save data on an SD-Card as the boat will not always be connected to the internet and then write it to the database when it gets reconnected to a Wifi inm harbor.
+This scipt is based on PlatformIO and will read all the data in the NMEA-2000 (N2k) BUS and will send it to an InfluxDB database. As this thing will be mainly operated in a marine environment, it will save data on an SD-Card as the boat will not always be connected to the internet and then write it to the database when it gets reconnected to a Wifi in harbor.
 
 ## Usage
 
