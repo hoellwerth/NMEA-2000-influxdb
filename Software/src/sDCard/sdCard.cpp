@@ -194,5 +194,21 @@ void setupSD() {
   uint64_t cardSize = SD.cardSize() / (1024 * 1024);
   Serial.printf("SD Card Size: %lluMB\n", cardSize);
 
-  writeFile(SD, "/log.txt", "\n");
+  writeFile(SD, "/main_battery_current_data.txt", "\n");
+  writeFile(SD, "/main_battery_current_timestamps.txt", "\n");
+
+  writeFile(SD, "/main_battery_voltage_data.txt", "\n");
+  writeFile(SD, "/main_battery_voltage_timestamps.txt", "\n");
+
+  writeFile(SD, "/main_battery_temperature_data.txt", "\n");
+  writeFile(SD, "/main_battery_temperature_timestamps.txt", "\n");
+
+  writeFile(SD, "/starter_battery_current_data.txt", "\n");
+  writeFile(SD, "/starter_battery_current_timestamps.txt", "\n");
+
+  writeFile(SD, "/starter_battery_voltage_data.txt", "\n");
+  writeFile(SD, "/starter_battery_voltage_timestamps.txt", "\n");
+
+  writeFile(SD, "/starter_battery_temperature_data.txt", "\n");
+  writeFile(SD, "/starter_battery_temperature_timestamps.txt", "\n");
 }
