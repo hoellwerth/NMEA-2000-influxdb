@@ -8,6 +8,10 @@
 #define INFLUXDB_ORG "554b5bb375690e45"
 #define INFLUXDB_BUCKET "boat"
 
+#define WRITE_PRECISION WritePrecision::S
+#define MAX_BATCH_SIZE 10
+#define WRITE_BUFFER_SIZE 30
+
 #define WIFI_SSID "JojoNet"
 #define WIFI_PASSWORD "Sennahoj08!?"
 
@@ -18,6 +22,8 @@
 #include <Preferences.h>
 #include <NMEA2000_CAN.h>
 #include <N2kMessages.h>
+#include <queue/queue.h>
+#include <iostream>
 
 // SD-Card helper functions
 #include "../src/sDCard/sdCard.h"
@@ -42,6 +48,8 @@ unsigned long previousMillis = 0;
 unsigned long interval = 30000;
 
 bool previous = false;
+
+time_t currentTime;
 
 // Set the information for other bus devices, which messages we support
 const unsigned long ReceiveMessages[] PROGMEM = {
@@ -92,6 +100,8 @@ bool connectWifi() {
     // Synchronize time with NTP servers and set timezone
     timeSync("CET-1CEST,M3.5.0,M10.5.0/3", "pool.ntp.org", "time.nis.gov");
 
+    currentTime = time(nullptr);
+
     // Update influxdb connection
     newNetwork();
 
@@ -105,19 +115,36 @@ bool connectWifi() {
 
 // Write data to buffer
 void writeToBuffer(time_t timestamp, const char* data, const char* path) {
+
+  Serial.print("Path: ");
+  Serial.println(path);
+
   // Append data to SD-Card
-  char timestampString[20];
-  sprintf(timestampString, "%2.13f", timestamp);
+  char timestampChar[100];
+  sprintf(timestampChar, "%2.13f", timestamp);
 
-  char* timestampPath = { new char[strlen(path) + strlen("_timestamps.txt") + 1] };
-  timestampPath = strcat(timestampPath, path);
-  timestampPath = strcat(timestampPath, "_timestamps.txt");
+  Serial.print("Timestamp: ");
+  Serial.println(timestampChar);
 
-  char* dataPath = { new char[strlen(path) + strlen("_data.txt") + 1] };
-  dataPath = strcat(dataPath, path);
-  dataPath = strcat(dataPath, "_data.txt");
+  std::string pathString = path;
 
-  appendFile(SD, timestampPath, timestampString);
+  std::string timestampPathString = pathString + "_timestamps.txt";
+
+  char* timestampPath = { new char[timestampPathString.length() + 1] };
+  strcpy(timestampPath, timestampPathString.c_str());
+
+  Serial.print("TimestampPath: ");
+  Serial.println(timestampPath);
+
+  std::string dataPathString = pathString + "_data.txt";
+
+  char* dataPath = { new char[dataPathString.length() + 1] };
+  strcpy(dataPath, dataPathString.c_str());
+
+  Serial.print("DataPath: ");
+  Serial.println(dataPath);
+
+  appendFile(SD, timestampPath, timestampChar);
   appendFile(SD, dataPath, data);
 }
 
@@ -125,94 +152,9 @@ void writeToBuffer(time_t timestamp, const char* data, const char* path) {
 void writeFromBuffer() {
   Serial.println("Writing from buffer");
 
-  // const char* data = readFile(SD, "/example.json");
 
-  const char* data = "{\"main_battery\":{\"voltage\":[{\"time\":\"1337\",\"data\":13.2},{\"time\":\"1338\",\"data\":14.1}],\"current\":[{\"time\":\"1337\",\"data\":5.1},{\"time\":\"1338\",\"data\":5.2}],\"temperature\":[{\"time\":\"1337\",\"data\":26.8},{\"time\":\"1338\",\"data\":26.9}]},\"starter_battery\":{\"voltage\":[{\"time\":\"1337\",\"data\":14.7},{\"time\":\"1338\",\"data\":15.2}],\"current\":[{\"time\":\"1337\",\"data\":1.7},{\"time\":\"1338\",\"data\":2.1}],\"temperature\":[{\"time\":\"1337\",\"data\":27.7},{\"time\":\"1338\",\"data\":27.6}]},\"general\":{\"rssi\":[{\"time\":\"1337\",\"data\":30},{\"time\":\"1338\",\"data\":29.9}]}}";
-  StaticJsonDocument<1024> doc;
-
-  DeserializationError error = deserializeJson(doc, data);
-
-  if (error) {
-    Serial.print("deserializeJson() failed: ");
-    Serial.println(error.c_str());
-    return;
-  }
-
-  JsonObject main_battery = doc["main_battery"];
-
-  for (JsonObject main_battery_voltage_item : main_battery["voltage"].as<JsonArray>()) {
-
-    const char* main_battery_voltage_item_time = main_battery_voltage_item["time"]; // "1337", "1338"
-    float main_battery_voltage_item_data = main_battery_voltage_item["data"]; // 13.2, 14.1
-    
-    Serial.println(main_battery_voltage_item_time);
-    Serial.println(main_battery_voltage_item_data);
-  }
-
-  for (JsonObject main_battery_current_item : main_battery["current"].as<JsonArray>()) {
-
-    const char* main_battery_current_item_time = main_battery_current_item["time"]; // "1337", "1338"
-    float main_battery_current_item_data = main_battery_current_item["data"]; // 5.1, 5.2
-
-    Serial.println(main_battery_current_item_time);
-    Serial.println(main_battery_current_item_data);
-  }
-
-  for (JsonObject main_battery_temperature_item : main_battery["temperature"].as<JsonArray>()) {
-
-    const char* main_battery_temperature_item_time = main_battery_temperature_item["time"]; // "1337", ...
-    float main_battery_temperature_item_data = main_battery_temperature_item["data"]; // 26.8, 26.9
-
-    Serial.println(main_battery_temperature_item_time);
-    Serial.println(main_battery_temperature_item_data);
-  }
-
-  JsonObject starter_battery = doc["starter_battery"];
-
-  for (JsonObject starter_battery_voltage_item : starter_battery["voltage"].as<JsonArray>()) {
-
-    const char* starter_battery_voltage_item_time = starter_battery_voltage_item["time"]; // "1337", "1338"
-    float starter_battery_voltage_item_data = starter_battery_voltage_item["data"]; // 14.7, 15.2
-
-    Serial.println(starter_battery_voltage_item_time);
-    Serial.println(starter_battery_voltage_item_data);
-  }
-
-  for (JsonObject starter_battery_current_item : starter_battery["current"].as<JsonArray>()) {
-
-    const char* starter_battery_current_item_time = starter_battery_current_item["time"]; // "1337", "1338"
-    float starter_battery_current_item_data = starter_battery_current_item["data"]; // 1.7, 2.1
-
-    Serial.println(starter_battery_current_item_time);
-    Serial.println(starter_battery_current_item_data);
-  }
-
-  for (JsonObject starter_battery_temperature_item : starter_battery["temperature"].as<JsonArray>()) {
-
-    const char* starter_battery_temperature_item_time = starter_battery_temperature_item["time"]; // "1337", ...
-    float starter_battery_temperature_item_data = starter_battery_temperature_item["data"]; // 27.7, 27.6
-
-    Serial.println(starter_battery_temperature_item_time);
-    Serial.println(starter_battery_temperature_item_data);
-  }
-
-  for (JsonObject general_rssi_item : doc["general"]["rssi"].as<JsonArray>()) {
-
-    const char* general_rssi_item_time = general_rssi_item["time"]; // "1337", "1338"
-    float general_rssi_item_data = general_rssi_item["data"]; // 30, 29.9
-
-    Serial.println(general_rssi_item_time);
-    Serial.println(general_rssi_item_data);
-  }
+  char* data = "{\"main_battery\":{\"voltage\":[{\"time\":\"1337\",\"data\":13.2},{\"time\":\"1338\",\"data\":14.1}],\"current\":[{\"time\":\"1337\",\"data\":5.1},{\"time\":\"1338\",\"data\":5.2}],\"temperature\":[{\"time\":\"1337\",\"data\":26.8},{\"time\":\"1338\",\"data\":26.9}]},\"starter_battery\":{\"voltage\":[{\"time\":\"1337\",\"data\":14.7},{\"time\":\"1338\",\"data\":15.2}],\"current\":[{\"time\":\"1337\",\"data\":1.7},{\"time\":\"1338\",\"data\":2.1}],\"temperature\":[{\"time\":\"1337\",\"data\":27.7},{\"time\":\"1338\",\"data\":27.6}]},\"general\":{\"rssi\":[{\"time\":\"1337\",\"data\":30},{\"time\":\"1338\",\"data\":29.9}]}}";
   
-  /*
-  // Write data to influxdb
-  starterBattery.addField("voltage", BatteryVoltage);
-  starterBattery.addField("current", BatteryCurrent);
-  starterBattery.addField("temperature", KelvinToC(BatteryTemperature));
-  starterBattery.addField("power", BatteryVoltage * BatteryCurrent);
-  */
-    
 }
 
 void handleBatteryStatus(const tN2kMsg &N2kMsg) {
@@ -250,13 +192,17 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
       Serial.print("InfluxDB write failed: ");
       Serial.println(client.getLastErrorMessage());
 
-      char message[200];
+      char voltage[200];
+      sprintf(voltage, "%2.13f", BatteryVoltage);
+      writeToBuffer(currentTime, voltage, "/main_battery_voltage");
 
-      sprintf(message, "%2.13f", BatteryVoltage);
+      char current[200];
+      sprintf(current, "%2.13f", BatteryCurrent);
+      writeToBuffer(currentTime, current, "/main_battery_current");
 
-      appendFile(SD, "/log.txt", "MainBattery Voltage: ");
-      appendFile(SD, "/log.txt", message);
-      appendFile(SD, "/log.txt", "\n");
+      char temperature[200];
+      sprintf(temperature, "%2.13f", KelvinToC(BatteryTemperature));
+      writeToBuffer(currentTime, temperature, "/main_battery_temperature");
     }
 
     return;
@@ -286,13 +232,17 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
       Serial.print("InfluxDB write failed: ");
       Serial.println(client.getLastErrorMessage());
 
-      char message[200];
+      char voltage[200];
+      sprintf(voltage, "%2.13f", BatteryVoltage);
+      writeToBuffer(currentTime, voltage, "/starter_battery_voltage");
 
-      sprintf(message, "%2.13f", BatteryVoltage);
+      char current[200];
+      sprintf(current, "%2.13f", BatteryCurrent);
+      writeToBuffer(currentTime, current, "/starter_battery_current");
 
-      appendFile(SD, "/log.txt", "StarterBattery Voltage: ");
-      appendFile(SD, "/log.txt", message);
-      appendFile(SD, "/log.txt", "\n");
+      char temperature[200];
+      sprintf(temperature, "%2.13f", KelvinToC(BatteryTemperature));
+      writeToBuffer(currentTime, temperature, "/starter_battery_temperature");
     }
 
     return;
@@ -329,7 +279,7 @@ void setup() {
   delay(10);
 
   // Enable client side influxdb timestamps - set time precision to milliseconds
-  client.setWriteOptions(WriteOptions().writePrecision(WritePrecision::MS));
+  client.setWriteOptions(WriteOptions().writePrecision(WRITE_PRECISION).batchSize(MAX_BATCH_SIZE).bufferSize(WRITE_BUFFER_SIZE));
 
   // Reserve enough buffer for sending all messages.
   NMEA2000.SetN2kCANMsgBufSize(8);
@@ -401,4 +351,9 @@ void loop() {
   if ( Serial.available() ) {
     Serial.read();
   }
+
+
+  currentTime+=0.001;
+
+  delay(1);
 }
