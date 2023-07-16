@@ -2,7 +2,7 @@
 
 ## Table of Contents
 - [Electrical](https://github.com/Baumistlustig/NMEA-2000-influxdb/tree/master/Electrical#electrical)
-- [Schematic](https://github.com/Baumistlustig/NMEA-2000-influxdb/blob/master/Electrical/NMEA-2000-influxdb.kicad_sch) The KiCad Schematic
+  - [Schematic](https://github.com/Baumistlustig/NMEA-2000-influxdb/blob/master/Electrical/NMEA-2000-influxdb.kicad_sch) The KiCad Schematic
 
 ## Components-List
 
