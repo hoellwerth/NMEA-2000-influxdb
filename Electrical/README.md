@@ -1,5 +1,9 @@
 # Electrical
 
+## Table of Contents
+
+- [Schematic](https://github.com/Baumistlustig/NMEA-2000-influxdb/blob/master/Electrical/NMEA-2000-influxdb.kicad_sch) The KiCad Schematic
+
 ## Components-List
 
 A list of all the electrical components I used for the project:
