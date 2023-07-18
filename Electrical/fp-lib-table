@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "esp32")(type "KiCad")(uri "/home/johannes/Documents/Electronics/NMEA-2000-influxdb/Electrical/Footprints/esp32.pretty")(options "")(descr ""))
+)
