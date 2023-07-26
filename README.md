@@ -12,7 +12,7 @@ It also holds a BMP280 for reading the temperature in the environment of the esp
 
 - [x] Listen for all known PGNs
 - [x] Post data to an InfluxDB 2.7 instance
-- [ ] Save data to an SD-Card while offline 
+- [x] Save data to an SD-Card while offline 
 - [ ] Use wifimanager
 
 ## Contribution
