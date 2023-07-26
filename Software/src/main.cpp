@@ -24,6 +24,9 @@
 #include <N2kMessages.h>
 #include <queue/queue.h>
 #include <iostream>
+#include <RTClib.h>
+#include <Wire.h>
+#include <TimeLib.h>
 
 // SD-Card helper functions
 #include "../src/sDCard/sdCard.h"
@@ -36,6 +39,8 @@ int NodeAddress;
 
 // Nonvolatile storage on ESP32 - To store LastDeviceAddress
 Preferences preferences;
+
+RTC_DS3231 rtc;
 
 // Create influxdb sensor points
 Point mainBattery("main_battery");
@@ -68,6 +73,21 @@ const unsigned long ReceiveMessages[] PROGMEM = {
   0
 };
 
+const char* months[12] = {
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec"
+};
+
 void newNetwork() {
   general.clearTags();
 
@@ -98,9 +118,59 @@ bool connectWifi() {
     Serial.println(WiFi.SSID());
 
     // Synchronize time with NTP servers and set timezone
-    timeSync("CET-1CEST,M3.5.0,M10.5.0/3", "pool.ntp.org", "time.nis.gov");
+    configTzTime("CET-1CEST,M3.5.0,M10.5.0/3", "pool.ntp.org", "time.nis.gov");
 
-    currentTime = time(nullptr);
+    // Wait till time is synced
+    Serial.print("Syncing time");
+    int i = 0;
+    while (time(nullptr) < 1000000000l && i < 40) {
+      Serial.print(".");
+      delay(500);
+      i++;
+    }
+    Serial.println();
+
+    // Show time
+    time_t tnow = time(nullptr);
+    Serial.print("Synchronized time: ");
+    Serial.println(ctime(&tnow));
+
+    currentTime = tnow;
+
+    Serial.print("Current time: ");
+    Serial.println(currentTime);
+
+    // Set time on RTC
+    char date[32];
+    sprintf(
+      date,
+      "%03s %02d %02d",
+      months[month(currentTime) - 1],
+      day(currentTime),
+      year(currentTime)
+    );
+
+    char time[32];
+    sprintf(
+      time,
+      "%02d:%02d:%02d",
+      hour(currentTime),
+      minute(currentTime),
+      second(currentTime)
+    );
+
+    Serial.print("Time: ");
+    Serial.print(date);
+    Serial.print(" ");
+    Serial.println(time);
+
+    rtc.adjust(DateTime(F(date), F(time)));
+    
+    Serial.print("RTC Temp: ");
+    Serial.println(rtc.getTemperature());
+
+    Serial.print("RTC time: ");
+    Serial.println(rtc.now().unixtime());
 
     // Update influxdb connection
     newNetwork();
@@ -192,17 +262,20 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
       Serial.print("InfluxDB write failed: ");
       Serial.println(client.getLastErrorMessage());
 
+      // Get current time
+      DateTime now = rtc.now();
+
       char voltage[200];
       sprintf(voltage, "%2.13f", BatteryVoltage);
-      writeToBuffer(currentTime, voltage, "/main_battery_voltage");
+      writeToBuffer(now.unixtime(), voltage, "/main_battery_voltage");
 
       char current[200];
       sprintf(current, "%2.13f", BatteryCurrent);
-      writeToBuffer(currentTime, current, "/main_battery_current");
+      writeToBuffer(now.unixtime(), current, "/main_battery_current");
 
       char temperature[200];
       sprintf(temperature, "%2.13f", KelvinToC(BatteryTemperature));
-      writeToBuffer(currentTime, temperature, "/main_battery_temperature");
+      writeToBuffer(now.unixtime(), temperature, "/main_battery_temperature");
     }
 
     return;
@@ -232,17 +305,20 @@ void handleBatteryStatus(const tN2kMsg &N2kMsg) {
       Serial.print("InfluxDB write failed: ");
       Serial.println(client.getLastErrorMessage());
 
+      // Get current time
+      DateTime now = rtc.now();
+
       char voltage[200];
       sprintf(voltage, "%2.13f", BatteryVoltage);
-      writeToBuffer(currentTime, voltage, "/starter_battery_voltage");
+      writeToBuffer(now.unixtime(), voltage, "/starter_battery_voltage");
 
       char current[200];
       sprintf(current, "%2.13f", BatteryCurrent);
-      writeToBuffer(currentTime, current, "/starter_battery_current");
+      writeToBuffer(now.unixtime(), current, "/starter_battery_current");
 
       char temperature[200];
       sprintf(temperature, "%2.13f", KelvinToC(BatteryTemperature));
-      writeToBuffer(currentTime, temperature, "/starter_battery_temperature");
+      writeToBuffer(now.unixtime(), temperature, "/starter_battery_temperature");
     }
 
     return;
@@ -278,6 +354,13 @@ void setup() {
   Serial.begin(115200);
   delay(10);
 
+	// init RTC
+  if (!rtc.begin()) {
+    Serial.println("Couldn't find RTC");
+    Serial.flush();
+    while (1) delay(10);
+  }
+  
   // Enable client side influxdb timestamps - set time precision to milliseconds
   client.setWriteOptions(WriteOptions().writePrecision(WRITE_PRECISION).batchSize(MAX_BATCH_SIZE).bufferSize(WRITE_BUFFER_SIZE));
 
@@ -351,9 +434,6 @@ void loop() {
   if ( Serial.available() ) {
     Serial.read();
   }
-
-
-  currentTime+=0.001;
 
   delay(1);
 }
