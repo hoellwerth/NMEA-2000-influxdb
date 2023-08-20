@@ -221,10 +221,146 @@ void writeToBuffer(time_t timestamp, const char* data, const char* path) {
 // Writes entire data from SD-Card to influxdb
 void writeFromBuffer() {
   Serial.println("Writing from buffer");
-
-
-  char* data = "{\"main_battery\":{\"voltage\":[{\"time\":\"1337\",\"data\":13.2},{\"time\":\"1338\",\"data\":14.1}],\"current\":[{\"time\":\"1337\",\"data\":5.1},{\"time\":\"1338\",\"data\":5.2}],\"temperature\":[{\"time\":\"1337\",\"data\":26.8},{\"time\":\"1338\",\"data\":26.9}]},\"starter_battery\":{\"voltage\":[{\"time\":\"1337\",\"data\":14.7},{\"time\":\"1338\",\"data\":15.2}],\"current\":[{\"time\":\"1337\",\"data\":1.7},{\"time\":\"1338\",\"data\":2.1}],\"temperature\":[{\"time\":\"1337\",\"data\":27.7},{\"time\":\"1338\",\"data\":27.6}]},\"general\":{\"rssi\":[{\"time\":\"1337\",\"data\":30},{\"time\":\"1338\",\"data\":29.9}]}}";
   
+  // Main battery
+
+  // Voltage
+
+  const char* rawMainBatteryVoltageTimestamps = readFile(SD, "/main_battery_voltage_timestamps.txt");
+  const char* rawMainBatteryVoltageData = readFile(SD, "/main_battery_voltage_data.txt");
+
+  // Iterate through timestamps every 16 characters is a new timestamp
+
+  for (int i = 0; i < strlen(rawMainBatteryVoltageTimestamps); i += 16) {
+    char timestamp[15];
+    strncpy(timestamp, rawMainBatteryVoltageTimestamps + i, 14);
+    timestamp[14] = '\0';
+
+    char data[16];
+    strncpy(data, rawMainBatteryVoltageData + i, 14);
+    data[14] = '\0';
+
+    Serial.print("Timestamp: ");
+    Serial.println(timestamp);
+
+    Serial.print("Data: ");
+    Serial.println(data);
+
+    mainBattery.clearFields();
+
+    const char* finalTimestamp = timestamp;
+
+    mainBattery.setTime(finalTimestamp);
+
+    float voltage = atof(data);
+    voltage = (float)((int)(voltage * 100 + .5)) / 100;
+
+    mainBattery.addField("voltage", voltage);
+
+    // Write to influx
+    client.pointToLineProtocol(mainBattery);
+
+    // Catch errors
+    if (!client.writePoint(mainBattery)) {
+      Serial.print("InfluxDB write failed: ");
+      Serial.println(client.getLastErrorMessage());
+
+      writeToBuffer(atof(timestamp), data, "/main_battery_voltage");
+    }
+  }
+
+  // Current
+
+  const char* rawMainBatteryCurrentTimestamps = readFile(SD, "/main_battery_current_timestamps.txt");
+  const char* rawMainBatteryCurrentData = readFile(SD, "/main_battery_current_data.txt");
+
+  // Iterate through timestamps every 15 characters is a new timestamp
+
+  for (int i = 0; i < strlen(rawMainBatteryCurrentTimestamps); i+=15) {
+    char timestamp[15];
+    strncpy(timestamp, rawMainBatteryCurrentTimestamps + i, 14);
+    timestamp[14] = '\0';
+
+    char data[15];
+    strncpy(data, rawMainBatteryCurrentData + i, 14);
+    data[14] = '\0';
+
+    Serial.print("Timestamp: ");
+    Serial.println(timestamp);
+
+    Serial.print("Data: ");
+    Serial.println(data);
+
+    mainBattery.clearFields();
+
+    const char* finalTimestamp = timestamp;
+
+    mainBattery.setTime(finalTimestamp);
+
+    float current = atof(data);
+    current = (float)((int)(current * 100 + .5)) / 100;
+
+    mainBattery.addField("current", current);
+
+    // Write to influx
+    client.pointToLineProtocol(mainBattery);
+
+    // Catch errors
+    if (!client.writePoint(mainBattery)) {
+      Serial.print("InfluxDB write failed: ");
+      Serial.println(client.getLastErrorMessage());
+
+      writeToBuffer(atof(timestamp), data, "/main_battery_current");
+    }
+  }
+
+  // Temperature
+
+  const char* rawMainBatteryTemperatureTimestamps = readFile(SD, "/main_battery_temperature_timestamps.txt");
+  const char* rawMainBatteryTemperatureData = readFile(SD, "/main_battery_temperature_data.txt");
+
+  // Iterate through timestamps every 15 characters is a new timestamp
+
+  for (int i = 0; i < strlen(rawMainBatteryTemperatureTimestamps); i+=15) {
+    char timestamp[15];
+    strncpy(timestamp, rawMainBatteryTemperatureTimestamps + i, 14);
+    timestamp[14] = '\0';
+
+    char data[15];
+    strncpy(data, rawMainBatteryTemperatureData + i, 14);
+    data[14] = '\0';
+
+    Serial.print("Timestamp: ");
+    Serial.println(timestamp);
+
+    Serial.print("Data: ");
+    Serial.println(data);
+
+    mainBattery.clearFields();
+
+    const char* finalTimestamp = timestamp;
+
+    mainBattery.setTime(finalTimestamp);
+
+    float temperature = atof(data);
+    temperature = (float)((int)(temperature * 100 + .5)) / 100;
+
+
+    mainBattery.addField("temperature", temperature);
+
+    // Write to influx
+    client.pointToLineProtocol(mainBattery);
+
+    // Catch errors
+    if (!client.writePoint(mainBattery)) {
+      Serial.print("InfluxDB write failed: ");
+      Serial.println(client.getLastErrorMessage());
+
+      writeToBuffer(atof(timestamp), data, "/main_battery_temperature");
+    }
+  }
+  
+  client.flushBuffer();
 }
 
 void handleBatteryStatus(const tN2kMsg &N2kMsg) {
