@@ -25,3 +25,17 @@ This script uses the following libraries:
 - [InfluxDB-Client-for-Arduino](https://github.com/tobiasschuerg/InfluxDB-Client-for-Arduino)
 - [NMEA2000](https://github.com/ttlappalainen/NMEA2000)
 - [NMEA2000_esp32](https://github.com/ttlappalainen/NMEA2000_esp32)
+- [RTCLib](https://github.com/adafruit/RTClib?utm_source=platformio&utm_medium=piohome)
+- [Time](https://github.com/PaulStoffregen/Time?utm_source=platformio&utm_medium=piohome)
+
+The relevant section in **platformio.ini**:
+```
+lib_deps = 
+	tobiasschuerg/ESP8266 Influxdb@^3.13.1
+	ttlappalainen/NMEA2000-library@^4.18.7
+	ttlappalainen/NMEA2000_esp32@^1.0.3
+	bblanchon/ArduinoJson@^6.21.2
+	Wire
+	paulstoffregen/Time@^1.6.1
+	adafruit/RTClib@^2.1.1
+```
