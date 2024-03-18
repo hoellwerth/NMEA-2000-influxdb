@@ -5,7 +5,7 @@
 // SD-Card helper functions
 #include "../src/sDCard/sdCard.h"
 
-#define INFLUXDB_URL "http://cloud.baumistlustig.eu:8086"
+#define INFLUXDB_URL "http://cloud.hoellwerth.eu:8086"
 #define INFLUXDB_TOKEN "h8S4V-g_bvHkhf11t276cOQ8-pxJhUtPGAiF9He1sDyU3Lu1Bmnwjx0__5eb2kIoWn2-iWB8Z3ofQQa9u3G1VA=="
 #define INFLUXDB_ORG "554b5bb375690e45"
 #define INFLUXDB_BUCKET "boat"
