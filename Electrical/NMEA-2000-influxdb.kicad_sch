@@ -2535,29 +2535,48 @@
 				)
 			)
 		)
-		(symbol "RTC-Module:RTC-Module"
-			(exclude_from_sim no)
+		(symbol "Mechanical:Heatsink"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim yes)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "U3"
-				(at 6.35 -7.62 0)
+			(property "Reference" "HS"
+				(at 0 5.08 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
 				)
 			)
-			(property "Value" "RTC-Module"
-				(at 6.35 -10.16 0)
+			(property "Value" "Heatsink"
+				(at 0 -1.27 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
 				)
 			)
-			(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x06_P2.54mm_Horizontal"
+			(property "Footprint" ""
+				(at 0.3048 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0.3048 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Heatsink"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2566,7 +2585,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" ""
+			(property "ki_keywords" "thermal heat temperature"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2575,7 +2594,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" ""
+			(property "ki_fp_filters" "Heatsink_*"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2584,124 +2603,32 @@
 					(hide yes)
 				)
 			)
-			(symbol "RTC-Module_1_1"
-				(rectangle
-					(start -5.08 0)
-					(end 5.08 -17.78)
+			(symbol "Heatsink_0_1"
+				(polyline
+					(pts
+						(xy -0.3302 1.27) (xy -0.9652 1.27) (xy -0.9652 3.81) (xy -1.6002 3.81) (xy -1.6002 1.27) (xy -2.2352 1.27)
+						(xy -2.2352 3.81) (xy -2.8702 3.81) (xy -2.8702 0) (xy -0.9652 0)
+					)
 					(stroke
-						(width 0)
+						(width 0.254)
 						(type default)
 					)
 					(fill
 						(type background)
 					)
 				)
-				(pin passive line
-					(at -7.62 -2.54 0)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
+				(polyline
+					(pts
+						(xy -0.3302 1.27) (xy -0.3302 3.81) (xy 0.3048 3.81) (xy 0.3048 1.27) (xy 0.9398 1.27) (xy 0.9398 3.81)
+						(xy 1.5748 3.81) (xy 1.5748 1.27) (xy 2.2098 1.27) (xy 2.2098 3.81) (xy 2.8448 3.81) (xy 2.8448 0)
+						(xy -0.9652 0)
 					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
+					(stroke
+						(width 0.254)
+						(type default)
 					)
-				)
-				(pin power_in line
-					(at -7.62 -5.08 0)
-					(length 2.54)
-					(name "VCC"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -7.62 -7.62 0)
-					(length 2.54)
-					(name "SDA"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -7.62 -10.16 0)
-					(length 2.54)
-					(name "SCL"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at -7.62 -12.7 0)
-					(length 2.54)
-					(name "SQW"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at -7.62 -15.24 0)
-					(length 2.54)
-					(name "32K"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
+					(fill
+						(type background)
 					)
 				)
 			)
@@ -3543,14 +3470,6 @@
 		(uuid "8288a7a2-c555-4101-a529-b4cff147b22a")
 	)
 	(no_connect
-		(at 262.89 69.85)
-		(uuid "8c990c3d-cdd4-4e39-9776-5bc85dc1a236")
-	)
-	(no_connect
-		(at 262.89 67.31)
-		(uuid "b0aa3d7a-b71d-4515-bf9a-11f9a631c65b")
-	)
-	(no_connect
 		(at 99.06 80.01)
 		(uuid "bace54e8-f515-4a25-ad17-65e7564fb6f0")
 	)
@@ -3585,26 +3504,6 @@
 			(type default)
 		)
 		(uuid "03a7e75a-8a60-42d8-a058-07208ec2bf3e")
-	)
-	(wire
-		(pts
-			(xy 262.89 67.31) (xy 257.81 67.31)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "048b23d6-f9d1-4762-938b-fb13f312c537")
-	)
-	(wire
-		(pts
-			(xy 257.81 74.93) (xy 262.89 74.93)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "06a0270d-f233-4e68-947f-c4d98794c6ff")
 	)
 	(wire
 		(pts
@@ -3695,16 +3594,6 @@
 			(type default)
 		)
 		(uuid "101a1993-1d0f-4522-a2e6-bc569a88285c")
-	)
-	(wire
-		(pts
-			(xy 257.81 77.47) (xy 265.43 77.47)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "112705cc-21a0-4c71-91cf-41385097b771")
 	)
 	(wire
 		(pts
@@ -4005,16 +3894,6 @@
 			(type default)
 		)
 		(uuid "583e6246-f129-4060-be39-31c027fc0037")
-	)
-	(wire
-		(pts
-			(xy 265.43 80.01) (xy 257.81 80.01)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5b6dee5c-a280-4e89-861d-0c6b5aacd140")
 	)
 	(wire
 		(pts
@@ -4538,16 +4417,6 @@
 	)
 	(wire
 		(pts
-			(xy 265.43 82.55) (xy 265.43 80.01)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d45837a5-0a64-445e-8260-e6542c86a0a4")
-	)
-	(wire
-		(pts
 			(xy 99.06 54.61) (xy 106.68 54.61)
 		)
 		(stroke
@@ -4668,16 +4537,6 @@
 	)
 	(wire
 		(pts
-			(xy 262.89 69.85) (xy 257.81 69.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "eaa1b95c-21de-4056-9723-91f21d7aaa5c")
-	)
-	(wire
-		(pts
 			(xy 27.94 35.56) (xy 27.94 38.1)
 		)
 		(stroke
@@ -4708,16 +4567,6 @@
 	)
 	(wire
 		(pts
-			(xy 265.43 63.5) (xy 265.43 77.47)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f7ee9edf-a95b-4515-9a13-b00adb944303")
-	)
-	(wire
-		(pts
 			(xy 148.59 156.21) (xy 148.59 158.75)
 		)
 		(stroke
@@ -4725,16 +4574,6 @@
 			(type default)
 		)
 		(uuid "f8cc1b92-94ea-4ddc-b7af-6e745293523f")
-	)
-	(wire
-		(pts
-			(xy 257.81 72.39) (xy 262.89 72.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fe252550-03b1-4fe5-9062-b2caa48d751e")
 	)
 	(wire
 		(pts
@@ -4800,17 +4639,6 @@
 			(justify left bottom)
 		)
 		(uuid "20d088f3-9d1c-4289-8e17-4789eda79863")
-	)
-	(label "SCL"
-		(at 262.89 74.93 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "295cd4ec-e084-41a7-8d8e-ea5ec0cf5615")
 	)
 	(label "CS"
 		(at 154.94 59.69 180)
@@ -4888,17 +4716,6 @@
 			(justify left bottom)
 		)
 		(uuid "5545ca20-c08d-4419-a07d-0b6bc38267d1")
-	)
-	(label "SDA"
-		(at 262.89 72.39 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "5b6f0958-d1be-4786-be78-8dd436de5946")
 	)
 	(label "CAN_L"
 		(at 22.86 33.02 0)
@@ -6010,88 +5827,6 @@
 		)
 	)
 	(symbol
-		(lib_id "RTC-Module:RTC-Module")
-		(at 250.19 82.55 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "52d7375b-75e6-4728-b049-9e45353a656d")
-		(property "Reference" "U3"
-			(at 243.84 74.93 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "RTC-Module"
-			(at 243.84 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x06_P2.54mm_Horizontal"
-			(at 250.19 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 250.19 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 250.19 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "81302e3d-4b1a-4dc3-b457-ef99b290e153")
-		)
-		(pin "2"
-			(uuid "73c5d086-12d0-4450-b9f0-84397360ad6c")
-		)
-		(pin "3"
-			(uuid "5f0ab9d1-b672-4e27-aae7-4c7686ff83eb")
-		)
-		(pin "4"
-			(uuid "5f0ab9d1-b672-4e27-aae7-4c7686ff83ec")
-		)
-		(pin "5"
-			(uuid "29878d3d-780c-45d5-ac3e-5d2cc5a9fd48")
-		)
-		(pin "6"
-			(uuid "4d91e939-7586-4e48-8ff1-a0ab9c01a40e")
-		)
-		(instances
-			(project "NMEA-2000-influxdb"
-				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "U3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+5V")
 		(at 92.71 26.67 0)
 		(unit 1)
@@ -6287,73 +6022,6 @@
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
 					(reference "#PWR05")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 265.43 63.5 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "73d327b0-6461-4331-aedd-e9abc2a56f30")
-		(property "Reference" "#PWR09"
-			(at 265.43 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 267.97 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 265.43 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 265.43 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 265.43 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "45238a82-f809-436e-b9d8-76f3b9d2e00f")
-		)
-		(instances
-			(project "NMEA-2000-influxdb"
-				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR09")
 					(unit 1)
 				)
 			)
@@ -6864,73 +6532,6 @@
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
 					(reference "#PWR016")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 265.43 82.55 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "b4765a2c-5486-4633-9d79-f6463199fe3b")
-		(property "Reference" "#PWR011"
-			(at 265.43 88.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 267.97 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 265.43 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 265.43 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 265.43 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "3717feb1-8980-4242-bf55-06d7839cccb6")
-		)
-		(instances
-			(project "NMEA-2000-influxdb"
-				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR011")
 					(unit 1)
 				)
 			)
@@ -7715,6 +7316,70 @@
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
 					(reference "#PWR01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Mechanical:Heatsink")
+		(at 82.55 19.05 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f70c2142-d0c8-45e6-b382-8b381af26955")
+		(property "Reference" "HS1"
+			(at 86.36 15.8749 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Heatsink"
+			(at 86.36 18.4149 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 82.8548 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 82.8548 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Heatsink"
+			(at 82.55 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "NMEA-2000-influxdb"
+				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
+					(reference "HS1")
 					(unit 1)
 				)
 			)
