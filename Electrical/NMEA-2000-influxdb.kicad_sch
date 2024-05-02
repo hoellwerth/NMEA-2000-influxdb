@@ -8055,7 +8055,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "16727fbe-944c-4057-a28b-6dda49105241")
 		(property "Reference" "#PWR038"
 			(at 53.34 127 0)
@@ -8067,7 +8066,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 53.34 125.73 0)
+			(at 53.086 124.714 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8945,7 +8944,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "5c5ddb79-6357-460f-a256-67239093d627")
 		(property "Reference" "#PWR039"
 			(at 83.82 111.76 0)
@@ -8957,7 +8955,7 @@
 			)
 		)
 		(property "Value" "+12V"
-			(at 83.82 102.87 0)
+			(at 83.82 103.378 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10066,7 +10064,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "c3a2725f-9ff2-4f99-bed3-93fb550f21df")
 		(property "Reference" "#PWR040"
 			(at 83.82 127 0)
@@ -10078,7 +10075,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 83.82 125.73 0)
+			(at 83.82 124.714 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11511,44 +11508,6 @@
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
 					(reference "#PWR037")
 					(unit 1)
-				)
-			)
-		)
-	)
-	(sheet
-		(at 26.924 138.938)
-		(size 49.53 16.51)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "f595a6b6-5945-4ca8-806c-a50feeda2cc9")
-		(property "Sheetname" "Display"
-			(at 26.924 138.2264 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "display.kicad_sch"
-			(at 26.924 156.0326 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "NMEA-2000-influxdb"
-				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(page "2")
 				)
 			)
 		)
