@@ -4,6 +4,12 @@
 	(generator_version "8.0")
 	(uuid "efe7a42c-525a-4afc-8476-4cc785240ca6")
 	(paper "A4")
+	(title_block
+		(title "Main Senderr")
+		(date "2024-05-17")
+		(rev "3")
+		(company "Johannes Höllwerth")
+	)
 	(lib_symbols
 		(symbol "+12V_1"
 			(power)
@@ -105,6 +111,126 @@
 				)
 			)
 			(symbol "+12V_1_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "+12V_2"
+			(power)
+			(pin_numbers hide)
+			(pin_names
+				(offset 0) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "+12V"
+				(at 0 3.556 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+12V\""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "+12V_2_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+12V_2_1_1"
 				(pin power_in line
 					(at 0 0 90)
 					(length 0)
@@ -3690,6 +3816,102 @@
 				)
 			)
 		)
+		(symbol "GND_7"
+			(power)
+			(pin_numbers hide)
+			(pin_names
+				(offset 0) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "GND"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "GND_7_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "GND_7_1_1"
+				(pin power_in line
+					(at 0 0 270)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "Interface_CAN_LIN:SN65HVD230"
 			(pin_names
 				(offset 1.016)
@@ -4395,9 +4617,9 @@
 		)
 		(symbol "MPCNC_Shield_Symbols:VMot"
 			(power)
+			(pin_numbers hide)
 			(pin_names
-				(offset 1.016)
-			)
+				(offset 1.016) hide)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -4912,16 +5134,16 @@
 				)
 			)
 		)
-		(symbol "power:+12V"
+		(symbol "VMot_1"
 			(power)
+			(pin_numbers hide)
 			(pin_names
-				(offset 0)
-			)
+				(offset 1.016) hide)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "#PWR"
-				(at 0 -3.81 0)
+				(at 0 -2.54 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -4929,8 +5151,8 @@
 					(hide yes)
 				)
 			)
-			(property "Value" "+12V"
-				(at 0 3.556 0)
+			(property "Value" "VMot"
+				(at 0 3.81 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -4955,7 +5177,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Power symbol creates a global label with name \"+12V\""
+			(property "Description" ""
 				(at 0 0 0)
 				(effects
 					(font
@@ -4964,58 +5186,46 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "global power"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "+12V_0_1"
-				(polyline
-					(pts
-						(xy -0.762 1.27) (xy 0 2.54)
-					)
+			(symbol "VMot_1_0_1"
+				(rectangle
+					(start 0 0)
+					(end 0 0)
 					(stroke
 						(width 0)
-						(type default)
+						(type solid)
 					)
 					(fill
 						(type none)
 					)
 				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 2.54)
-					)
+				(rectangle
+					(start 0 0)
+					(end 0 1.27)
 					(stroke
 						(width 0)
-						(type default)
+						(type solid)
 					)
 					(fill
 						(type none)
 					)
 				)
-				(polyline
-					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
-					)
+				(circle
+					(center 0 1.905)
+					(radius 0.635)
 					(stroke
 						(width 0)
-						(type default)
+						(type solid)
 					)
 					(fill
 						(type none)
 					)
 				)
 			)
-			(symbol "+12V_1_1"
+			(symbol "VMot_1_1_1"
 				(pin power_in line
 					(at 0 0 90)
 					(length 0) hide
-					(name "+12V"
+					(name "VMot"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -5032,16 +5242,16 @@
 				)
 			)
 		)
-		(symbol "power:+3V3"
+		(symbol "VMot_2"
 			(power)
+			(pin_numbers hide)
 			(pin_names
-				(offset 0)
-			)
+				(offset 1.016) hide)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "#PWR"
-				(at 0 -3.81 0)
+				(at 0 -2.54 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -5049,8 +5259,8 @@
 					(hide yes)
 				)
 			)
-			(property "Value" "+3V3"
-				(at 0 3.556 0)
+			(property "Value" "VMot"
+				(at 0 3.81 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -5075,7 +5285,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(property "Description" ""
 				(at 0 0 0)
 				(effects
 					(font
@@ -5084,178 +5294,46 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "global power"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "+3V3_0_1"
-				(polyline
-					(pts
-						(xy -0.762 1.27) (xy 0 2.54)
-					)
+			(symbol "VMot_2_0_1"
+				(rectangle
+					(start 0 0)
+					(end 0 0)
 					(stroke
 						(width 0)
-						(type default)
+						(type solid)
 					)
 					(fill
 						(type none)
 					)
 				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 2.54)
-					)
+				(rectangle
+					(start 0 0)
+					(end 0 1.27)
 					(stroke
 						(width 0)
-						(type default)
+						(type solid)
 					)
 					(fill
 						(type none)
 					)
 				)
-				(polyline
-					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
-					)
+				(circle
+					(center 0 1.905)
+					(radius 0.635)
 					(stroke
 						(width 0)
-						(type default)
+						(type solid)
 					)
 					(fill
 						(type none)
 					)
 				)
 			)
-			(symbol "+3V3_1_1"
+			(symbol "VMot_2_1_1"
 				(pin power_in line
 					(at 0 0 90)
 					(length 0) hide
-					(name "+3V3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "power:+5V"
-			(power)
-			(pin_names
-				(offset 0)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 -3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Value" "+5V"
-				(at 0 3.556 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name \"+5V\""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "global power"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "+5V_0_1"
-				(polyline
-					(pts
-						(xy -0.762 1.27) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "+5V_1_1"
-				(pin power_in line
-					(at 0 0 90)
-					(length 0) hide
-					(name "+5V"
+					(name "VMot"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -8307,7 +8385,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "01890650-c1fd-4691-a1c5-7992825a0885")
-		(property "Reference" "#PWR030"
+		(property "Reference" "#PWR029"
 			(at 129.54 165.1 0)
 			(effects
 				(font
@@ -8357,7 +8435,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR030")
+					(reference "#PWR029")
 					(unit 1)
 				)
 			)
@@ -8651,7 +8729,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0e6030e3-f350-4e39-b8bf-73c5e6c7a56e")
-		(property "Reference" "J5"
+		(property "Reference" "J4"
 			(at 160.655 127 0)
 			(effects
 				(font
@@ -8724,24 +8802,25 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "J5")
+					(reference "J4")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
+		(lib_name "GND_7")
 		(lib_id "power:GND")
-		(at 107.95 173.99 0)
+		(at 95.25 39.37 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "1042b21f-ded6-40d5-96a4-bd261a92b5c2")
-		(property "Reference" "#PWR028"
-			(at 107.95 180.34 0)
+		(uuid "11e518ff-e335-4bdb-a4b5-5e4b38382e55")
+		(property "Reference" "#PWR09"
+			(at 95.25 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8750,7 +8829,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 107.95 179.07 0)
+			(at 95.25 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8758,7 +8837,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 107.95 173.99 0)
+			(at 95.25 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8767,7 +8846,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 107.95 173.99 0)
+			(at 95.25 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8775,8 +8854,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 107.95 173.99 0)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 95.25 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8785,12 +8864,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "a0f50454-14ae-4c44-b752-2292a80c35fd")
+			(uuid "4890df01-44df-479e-928e-a0c747c42e39")
 		)
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR028")
+					(reference "#PWR09")
 					(unit 1)
 				)
 			)
@@ -8806,7 +8885,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "155af785-84b4-4bad-be61-3b0d2d3f373f")
-		(property "Reference" "U5"
+		(property "Reference" "U4"
 			(at 231.775 127 0)
 			(effects
 				(font
@@ -8864,7 +8943,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "U5")
+					(reference "U4")
 					(unit 1)
 				)
 			)
@@ -8880,7 +8959,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "16727fbe-944c-4057-a28b-6dda49105241")
-		(property "Reference" "#PWR021"
+		(property "Reference" "#PWR022"
 			(at 34.29 140.97 0)
 			(effects
 				(font
@@ -8930,7 +9009,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR021")
+					(reference "#PWR022")
 					(unit 1)
 				)
 			)
@@ -9014,9 +9093,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "1da1b6e6-6c7f-40c9-ab59-0918bfe93e87")
-		(property "Reference" "#PWR07"
+		(property "Reference" "#PWR011"
 			(at 152.4 45.72 0)
 			(effects
 				(font
@@ -9026,7 +9104,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 152.4 36.83 0)
+			(at 152.4 36.576 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9066,7 +9144,73 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR07")
+					(reference "#PWR011")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_name "+5V_1")
+		(lib_id "power:+5V")
+		(at 50.8 156.21 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "1e0fc996-8ce5-4b24-93d5-ac31eb5e313b")
+		(property "Reference" "#PWR028"
+			(at 50.8 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 50.8 151.13 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 50.8 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 50.8 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 50.8 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5d6c1523-5aa4-4697-a16e-42aacee61e03")
+		)
+		(instances
+			(project "NMEA-2000-influxdb"
+				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
+					(reference "#PWR028")
 					(unit 1)
 				)
 			)
@@ -9083,7 +9227,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2387cf78-4d1a-4c2f-82ff-a22edd0bc030")
-		(property "Reference" "#PWR019"
+		(property "Reference" "#PWR016"
 			(at 227.33 85.09 0)
 			(effects
 				(font
@@ -9133,7 +9277,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR019")
+					(reference "#PWR016")
 					(unit 1)
 				)
 			)
@@ -9356,6 +9500,73 @@
 		)
 	)
 	(symbol
+		(lib_name "+12V_2")
+		(lib_id "power:+12V")
+		(at 64.77 121.92 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "36072b6a-ab59-4fb4-9f34-ac0aadb12865")
+		(property "Reference" "#PWR020"
+			(at 64.77 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+12V"
+			(at 64.77 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 64.77 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 64.77 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+12V\""
+			(at 64.77 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7ca15bd1-a29e-4ba1-b84b-5e78b25aa8ca")
+		)
+		(instances
+			(project "NMEA-2000-influxdb"
+				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
+					(reference "#PWR020")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_name "GND_2")
 		(lib_id "power:GND")
 		(at 224.79 49.53 0)
@@ -9366,7 +9577,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "38f3b676-2959-4285-8437-db876481d16a")
-		(property "Reference" "#PWR014"
+		(property "Reference" "#PWR012"
 			(at 224.79 55.88 0)
 			(effects
 				(font
@@ -9416,7 +9627,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR014")
+					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -9630,72 +9841,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 27.94 59.69 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "3fcca70a-cf43-4837-ab4b-2e49a6d0ef2b")
-		(property "Reference" "#PWR012"
-			(at 27.94 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 27.94 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 27.94 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 27.94 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 27.94 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "bde3b3f5-be2b-4bd2-bc27-e9afddce0f86")
-		)
-		(instances
-			(project "NMEA-2000-influxdb"
-				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR012")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Jumper:Jumper_3_Bridged12")
 		(at 214.63 107.95 0)
 		(unit 1)
@@ -9703,10 +9848,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "3feb50e4-a560-4929-8baf-d9321ba9d266")
 		(property "Reference" "JP3"
-			(at 214.63 101.6 0)
+			(at 214.376 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9719,6 +9863,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
@@ -9761,6 +9906,72 @@
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
 					(reference "JP3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_name "+5V_1")
+		(lib_id "power:+5V")
+		(at 105.41 24.13 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "419e2752-d558-44cd-8ff4-3771e2445449")
+		(property "Reference" "#PWR02"
+			(at 105.41 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 105.41 19.05 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 105.41 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 105.41 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 105.41 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "895fd69f-feed-492a-b1c8-fbde30c98139")
+		)
+		(instances
+			(project "NMEA-2000-influxdb"
+				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
+					(reference "#PWR02")
 					(unit 1)
 				)
 			)
@@ -9837,6 +10048,72 @@
 		)
 	)
 	(symbol
+		(lib_name "+5V_1")
+		(lib_id "power:+5V")
+		(at 149.86 41.91 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "440d314f-6b4e-4125-80e7-bfd34eedbac9")
+		(property "Reference" "#PWR010"
+			(at 149.86 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 149.86 36.83 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 149.86 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 149.86 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 149.86 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "77e470eb-0471-4638-8ea5-53691aa0b83e")
+		)
+		(instances
+			(project "NMEA-2000-influxdb"
+				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
+					(reference "#PWR010")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C_Small")
 		(at 73.66 31.75 0)
 		(unit 1)
@@ -9845,7 +10122,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4bbf1bbe-2bca-4c27-b37c-75fe4a121cc8")
-		(property "Reference" "C3"
+		(property "Reference" "C2"
 			(at 68.58 30.48 0)
 			(effects
 				(font
@@ -9899,7 +10176,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "C3")
+					(reference "C2")
 					(unit 1)
 				)
 			)
@@ -9916,7 +10193,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4ce79797-e3c2-469a-ae34-964dde2170ce")
-		(property "Reference" "#PWR029"
+		(property "Reference" "#PWR013"
 			(at 172.72 60.96 0)
 			(effects
 				(font
@@ -9966,7 +10243,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR029")
+					(reference "#PWR013")
 					(unit 1)
 				)
 			)
@@ -9983,7 +10260,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4f077660-98da-4880-b17f-bea99828f837")
-		(property "Reference" "#PWR032"
+		(property "Reference" "#PWR030"
 			(at 182.88 170.18 0)
 			(effects
 				(font
@@ -10033,73 +10310,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR032")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 105.41 24.13 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "546e53fa-b2e5-4b77-aeb8-0664dfdacf68")
-		(property "Reference" "#PWR03"
-			(at 105.41 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 105.41 19.304 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 105.41 24.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 105.41 24.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 105.41 24.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "676e307b-928c-4df2-9f2e-2a00521dae28")
-		)
-		(instances
-			(project "NMEA-2000-influxdb"
-				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR03")
+					(reference "#PWR030")
 					(unit 1)
 				)
 			)
@@ -10173,71 +10384,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+12V")
-		(at 64.77 121.92 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "5c5ddb79-6357-460f-a256-67239093d627")
-		(property "Reference" "#PWR017"
-			(at 64.77 125.73 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+12V"
-			(at 64.77 117.348 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 64.77 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 64.77 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 64.77 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b79c6152-852f-4e25-8cdb-c9fc43b11750")
-		)
-		(instances
-			(project "NMEA-2000-influxdb"
-				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR017")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Small")
 		(at 105.41 31.75 0)
 		(unit 1)
@@ -10246,7 +10392,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "62943ff1-6a61-4a1b-9625-4f9097f667e1")
-		(property "Reference" "C2"
+		(property "Reference" "C4"
 			(at 107.95 30.48 0)
 			(effects
 				(font
@@ -10300,73 +10446,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "C2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 95.25 39.37 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "69683fd5-e004-4704-b8e3-11f0123edd33")
-		(property "Reference" "#PWR05"
-			(at 95.25 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 95.25 44.577 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 95.25 39.37 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 95.25 39.37 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 95.25 39.37 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "a6ba0345-5fbe-4c77-9184-d5168a1b4878")
-		)
-		(instances
-			(project "NMEA-2000-influxdb"
-				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR05")
+					(reference "C4")
 					(unit 1)
 				)
 			)
@@ -10383,7 +10463,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6c3f186c-5c5b-4089-a168-f1647862a492")
-		(property "Reference" "#PWR09"
+		(property "Reference" "#PWR04"
 			(at 218.44 27.94 0)
 			(effects
 				(font
@@ -10433,7 +10513,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR09")
+					(reference "#PWR04")
 					(unit 1)
 				)
 			)
@@ -10448,7 +10528,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7c32da4d-5231-4475-895f-ec342fcd22e4")
-		(property "Reference" "#PWR01"
+		(property "Reference" "#PWR07"
 			(at 27.94 27.94 0)
 			(effects
 				(font
@@ -10498,73 +10578,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR01")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+12V")
-		(at 85.09 24.13 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "85929879-504c-456e-9e90-357624039d2c")
-		(property "Reference" "#PWR02"
-			(at 85.09 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+12V"
-			(at 85.09 19.685 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 85.09 24.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 85.09 24.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 85.09 24.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b7895b9d-3654-46ea-ab0a-0316d89c749e")
-		)
-		(instances
-			(project "NMEA-2000-influxdb"
-				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR02")
+					(reference "#PWR07")
 					(unit 1)
 				)
 			)
@@ -10641,6 +10655,72 @@
 		)
 	)
 	(symbol
+		(lib_name "+3V3_1")
+		(lib_id "power:+3V3")
+		(at 82.55 151.13 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "94609c71-4f3d-4806-9289-55f3bc7c9663")
+		(property "Reference" "#PWR026"
+			(at 82.55 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 82.55 145.542 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 82.55 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 82.55 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 82.55 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4e51050c-ce19-44bd-843d-ca0cd2448d40")
+		)
+		(instances
+			(project "NMEA-2000-influxdb"
+				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
+					(reference "#PWR026")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_name "+5V_1")
 		(lib_id "power:+5V")
 		(at 85.09 151.13 0)
@@ -10650,7 +10730,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "947849ba-da5d-4fd5-8367-7fea86d17c79")
-		(property "Reference" "#PWR024"
+		(property "Reference" "#PWR027"
 			(at 85.09 154.94 0)
 			(effects
 				(font
@@ -10700,7 +10780,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR024")
+					(reference "#PWR027")
 					(unit 1)
 				)
 			)
@@ -10716,7 +10796,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "95908846-bdc3-4cad-bc08-e10e8fb09e97")
-		(property "Reference" "J4"
+		(property "Reference" "J5"
 			(at 93.98 147.32 0)
 			(effects
 				(font
@@ -10810,7 +10890,74 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "J4")
+					(reference "J5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_name "+12V_2")
+		(lib_id "power:+12V")
+		(at 85.09 24.13 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "979f6a8e-9430-4eca-b178-4dc7b8350bc2")
+		(property "Reference" "#PWR01"
+			(at 85.09 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+12V"
+			(at 85.09 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 85.09 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 85.09 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+12V\""
+			(at 85.09 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e274afde-87ff-4bf7-9c99-81ecc4a87e97")
+		)
+		(instances
+			(project "NMEA-2000-influxdb"
+				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
+					(reference "#PWR01")
 					(unit 1)
 				)
 			)
@@ -10826,7 +10973,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9a3d7954-2a10-4afb-8dc8-2762d719ebe9")
-		(property "Reference" "#PWR018"
+		(property "Reference" "#PWR017"
 			(at 151.13 116.84 0)
 			(effects
 				(font
@@ -10876,7 +11023,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR018")
+					(reference "#PWR017")
 					(unit 1)
 				)
 			)
@@ -10960,10 +11107,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "9ff62bb8-95a6-40df-b573-6996fbf2a4fb")
 		(property "Reference" "JP1"
-			(at 245.11 90.1699 90)
+			(at 245.11 91.186 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10978,6 +11124,7 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
@@ -11023,6 +11170,73 @@
 		)
 	)
 	(symbol
+		(lib_name "GND_7")
+		(lib_id "power:GND")
+		(at 27.94 72.39 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a2d7647d-e33c-41cf-bcaa-9b369cb358d2")
+		(property "Reference" "#PWR015"
+			(at 27.94 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 27.94 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 27.94 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 27.94 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 27.94 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6e7498ea-5273-49f1-9f30-9852ec68393b")
+		)
+		(instances
+			(project "NMEA-2000-influxdb"
+				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
+					(reference "#PWR015")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_name "+3V3_1")
 		(lib_id "power:+3V3")
 		(at 207.01 132.08 0)
@@ -11033,7 +11247,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a46dc97f-ed40-4e7b-95f9-7222927768a7")
-		(property "Reference" "#PWR025"
+		(property "Reference" "#PWR021"
 			(at 207.01 135.89 0)
 			(effects
 				(font
@@ -11083,7 +11297,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR025")
+					(reference "#PWR021")
 					(unit 1)
 				)
 			)
@@ -11157,17 +11371,18 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 149.86 41.91 0)
-		(mirror y)
+		(lib_name "GND_7")
+		(lib_id "power:GND")
+		(at 227.33 116.84 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "a78944bc-1e5f-429a-8124-f4f38f332266")
-		(property "Reference" "#PWR06"
-			(at 149.86 45.72 0)
+		(fields_autoplaced yes)
+		(uuid "b13c7e00-1f85-4396-a12d-36d1c915b5f8")
+		(property "Reference" "#PWR018"
+			(at 227.33 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11175,8 +11390,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+5V"
-			(at 149.86 37.338 90)
+		(property "Value" "GND"
+			(at 227.33 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11184,7 +11399,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 149.86 41.91 0)
+			(at 227.33 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11193,7 +11408,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 149.86 41.91 0)
+			(at 227.33 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11201,8 +11416,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 149.86 41.91 0)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 227.33 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11211,29 +11426,30 @@
 			)
 		)
 		(pin "1"
-			(uuid "6beb0b4c-b278-4b88-9807-955ee55e1058")
+			(uuid "f4884d84-8fd9-446b-83e5-5f5889e3322c")
 		)
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR06")
+					(reference "#PWR018")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
-		(at 82.55 151.13 0)
-		(mirror y)
+		(lib_name "GND_7")
+		(lib_id "power:GND")
+		(at 27.94 38.1 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "aecfdf45-c96f-4972-b55d-22c560c35bea")
-		(property "Reference" "#PWR023"
-			(at 82.55 154.94 0)
+		(fields_autoplaced yes)
+		(uuid "b434ac73-7e73-4fd5-a992-9d5519a40e67")
+		(property "Reference" "#PWR08"
+			(at 27.94 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11241,8 +11457,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
-			(at 82.55 145.923 90)
+		(property "Value" "GND"
+			(at 27.94 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11250,7 +11466,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 82.55 151.13 0)
+			(at 27.94 38.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11259,7 +11475,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 82.55 151.13 0)
+			(at 27.94 38.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11267,8 +11483,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 82.55 151.13 0)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 27.94 38.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11277,12 +11493,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "6be0de01-9a41-4395-be9b-1a53abf1c760")
+			(uuid "afbcb4a6-701e-4274-b5ed-6b85368744ee")
 		)
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR023")
+					(reference "#PWR08")
 					(unit 1)
 				)
 			)
@@ -11297,7 +11513,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b8b1994f-c0dd-46fd-81e2-8b95ab9ab5be")
-		(property "Reference" "C4"
+		(property "Reference" "C3"
 			(at 80.01 30.48 0)
 			(effects
 				(font
@@ -11351,7 +11567,140 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "C4")
+					(reference "C3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_name "GND_7")
+		(lib_id "power:GND")
+		(at 50.8 173.99 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "bd764c53-a18a-4fd9-ba19-ce7bba944d10")
+		(property "Reference" "#PWR031"
+			(at 50.8 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 50.8 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 50.8 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 50.8 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 50.8 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ed8fe132-7535-4468-b548-8ff9bac2e9bb")
+		)
+		(instances
+			(project "NMEA-2000-influxdb"
+				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
+					(reference "#PWR031")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_name "+5V_1")
+		(lib_id "power:+5V")
+		(at 27.94 59.69 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c10f619c-c2ff-442d-91ad-767978b0a054")
+		(property "Reference" "#PWR014"
+			(at 27.94 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 27.94 54.61 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 27.94 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 27.94 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 27.94 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "32913ee0-8c24-4145-9fdd-2a783590ed0b")
+		)
+		(instances
+			(project "NMEA-2000-influxdb"
+				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
+					(reference "#PWR014")
 					(unit 1)
 				)
 			)
@@ -11434,7 +11783,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c3a2725f-9ff2-4f99-bed3-93fb550f21df")
-		(property "Reference" "#PWR022"
+		(property "Reference" "#PWR023"
 			(at 64.77 140.97 0)
 			(effects
 				(font
@@ -11484,7 +11833,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR022")
+					(reference "#PWR023")
 					(unit 1)
 				)
 			)
@@ -11516,6 +11865,7 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
@@ -11704,269 +12054,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 227.33 116.84 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "c8b89f27-9103-41df-8810-0c6472cdaf03")
-		(property "Reference" "#PWR026"
-			(at 227.33 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 227.33 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 227.33 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 227.33 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 227.33 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "03984fe0-7bfe-40fe-b079-e5f282b77ba1")
-		)
-		(instances
-			(project "NMEA-2000-influxdb"
-				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR026")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 27.94 38.1 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "cb248d51-0449-496a-bb4b-66c5fb45dec3")
-		(property "Reference" "#PWR04"
-			(at 27.94 44.45 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 27.94 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 27.94 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 27.94 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 27.94 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "151316ae-5a64-4015-bbd6-e6d0d8b67068")
-		)
-		(instances
-			(project "NMEA-2000-influxdb"
-				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR04")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 50.8 156.21 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "ceac8324-dd23-435d-86ff-e1f73860e03d")
-		(property "Reference" "#PWR015"
-			(at 50.8 160.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 50.8 151.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 50.8 156.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 50.8 156.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 50.8 156.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "d379d4ae-4f2c-4a13-aaa9-516e3fa619b6")
-		)
-		(instances
-			(project "NMEA-2000-influxdb"
-				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR015")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 50.8 173.99 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "d243dd88-3e05-4d1a-a751-c399280610a4")
-		(property "Reference" "#PWR020"
-			(at 50.8 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 50.8 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 50.8 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 50.8 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 50.8 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "c52445bd-b7c4-4066-a272-1c0e690b009b")
-		)
-		(instances
-			(project "NMEA-2000-influxdb"
-				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR020")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "SD-Card-Module:SD-Card-Module")
 		(at 35.56 151.13 0)
 		(unit 1)
@@ -11976,7 +12063,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d8dff41a-9890-4c13-8f42-3535fc0ac1d1")
-		(property "Reference" "U3"
+		(property "Reference" "U5"
 			(at 36.195 151.13 0)
 			(effects
 				(font
@@ -12040,7 +12127,73 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "U3")
+					(reference "U5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_name "VMot_1")
+		(lib_id "MPCNC_Shield_Symbols:VMot")
+		(at 34.29 121.92 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "daed1ad9-3f5f-4605-8c1b-19ae398d03f4")
+		(property "Reference" "#PWR019"
+			(at 34.29 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "VMot"
+			(at 33.8328 117.475 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 34.29 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 34.29 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 34.29 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "621d62c6-5fab-4587-a55f-c73261a01ee7")
+		)
+		(instances
+			(project "NMEA-2000-influxdb"
+				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
+					(reference "#PWR019")
 					(unit 1)
 				)
 			)
@@ -12119,72 +12272,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 27.94 72.39 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "e63e9de2-f48e-4ceb-b917-3b0e235d7d22")
-		(property "Reference" "#PWR013"
-			(at 27.94 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 27.94 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 27.94 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 27.94 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 27.94 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "3d733673-217d-476d-9c1b-d4fe37f6ae9a")
-		)
-		(instances
-			(project "NMEA-2000-influxdb"
-				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR013")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_name "+3V3_1")
 		(lib_id "power:+3V3")
 		(at 243.84 24.13 0)
@@ -12195,7 +12282,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e6fbc49b-2bdc-425f-a7c5-519a944ff48d")
-		(property "Reference" "#PWR011"
+		(property "Reference" "#PWR06"
 			(at 243.84 27.94 0)
 			(effects
 				(font
@@ -12245,7 +12332,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR011")
+					(reference "#PWR06")
 					(unit 1)
 				)
 			)
@@ -12336,7 +12423,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "eb79cae6-d0ba-4ca4-b6a5-3f2c9187237c")
-		(property "Reference" "U4"
+		(property "Reference" "U3"
 			(at 227.584 85.852 0)
 			(effects
 				(font
@@ -12408,7 +12495,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "U4")
+					(reference "U3")
 					(unit 1)
 				)
 			)
@@ -12425,7 +12512,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ec4fe28a-420b-47c3-96e8-7e3721130566")
-		(property "Reference" "#PWR033"
+		(property "Reference" "#PWR024"
 			(at 129.54 139.7 0)
 			(effects
 				(font
@@ -12475,7 +12562,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR033")
+					(reference "#PWR024")
 					(unit 1)
 				)
 			)
@@ -12492,7 +12579,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ed521c51-5cdd-4697-bd36-6a759c8ff87c")
-		(property "Reference" "#PWR010"
+		(property "Reference" "#PWR05"
 			(at 231.14 27.94 0)
 			(effects
 				(font
@@ -12542,7 +12629,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR010")
+					(reference "#PWR05")
 					(unit 1)
 				)
 			)
@@ -12618,6 +12705,7 @@
 		)
 	)
 	(symbol
+		(lib_name "VMot_2")
 		(lib_id "MPCNC_Shield_Symbols:VMot")
 		(at 205.74 24.13 0)
 		(unit 1)
@@ -12626,7 +12714,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f3672035-2a04-43b6-b6eb-c759679d7295")
-		(property "Reference" "#PWR08"
+		(property "Reference" "#PWR03"
 			(at 205.74 26.67 0)
 			(effects
 				(font
@@ -12676,7 +12764,7 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR08")
+					(reference "#PWR03")
 					(unit 1)
 				)
 			)
@@ -12693,7 +12781,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f7fbf859-d0c6-4227-8ddb-ee4bd6055610")
-		(property "Reference" "#PWR027"
+		(property "Reference" "#PWR025"
 			(at 207.01 151.13 0)
 			(effects
 				(font
@@ -12743,23 +12831,25 @@
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR027")
+					(reference "#PWR025")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "MPCNC_Shield_Symbols:VMot")
-		(at 34.29 121.92 0)
+		(lib_name "GND_7")
+		(lib_id "power:GND")
+		(at 107.95 173.99 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "fd9f2bd7-b07b-4444-9c67-95f6630e5bdd")
-		(property "Reference" "#PWR016"
-			(at 34.29 124.46 0)
+		(fields_autoplaced yes)
+		(uuid "fdd158f8-d39a-435c-b8b6-9626dc357eaf")
+		(property "Reference" "#PWR032"
+			(at 107.95 180.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12767,8 +12857,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "VMot"
-			(at 33.8328 117.475 0)
+		(property "Value" "GND"
+			(at 107.95 179.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12776,7 +12866,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 34.29 121.92 0)
+			(at 107.95 173.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12785,7 +12875,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 34.29 121.92 0)
+			(at 107.95 173.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12793,8 +12883,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 34.29 121.92 0)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 107.95 173.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12803,12 +12893,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "ae7b003d-b7e4-4bbd-981f-d9a9acbeb86d")
+			(uuid "ea18b086-c6a4-4588-9915-b02ff6006f25")
 		)
 		(instances
 			(project "NMEA-2000-influxdb"
 				(path "/efe7a42c-525a-4afc-8476-4cc785240ca6"
-					(reference "#PWR016")
+					(reference "#PWR032")
 					(unit 1)
 				)
 			)
