@@ -1,0 +1,28 @@
+Reference,Value,Datasheet,Footprint,Qty,DNP,LCSC Part Number,Sourced
+C1,0.33uF,~,Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm,1,,C2761750,yes
+"C2,C5,C8,C9,C10",0.1uF,~,Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm,5,,C84772,yes
+"C3,C4,C6",1uF,~,Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm,3,,C5632429,yes
+C7,22uF,~,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,1,,C12891,yes
+"D1,D2,D3,D4,D5",LED,~,LED_THT:LED_D3.0mm,5,,,yes
+F1,Polyfuse,~,Diode_SMD:D_1210_3225Metric_Pad1.42x2.65mm_HandSolder,1,,C720080,yes
+J1,Conn_01x04,~,Connector:FanPinHeader_1x04_P2.54mm_Vertical,1,,,yes
+J2,DE9_Receptacle, ~,Connector_Dsub:DSUB-9_Female_Horizontal_P2.77x2.84mm_EdgePinOffset9.90mm_Housed_MountingHolesOffset11.32mm,1,,C19077337,yes
+J3,Conn_01x04,,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-4-5.0-H_1x04_P5.00mm_Horizontal",1,,,yes
+J4,Micro_SD_Card,http://katalog.we-online.de/em/datasheet/693072010801.pdf,Connector_Card:microSD_HC_Hirose_DM3AT-SF-PEJM5,1,,C114218,yes
+J5,Conn_02x08,~,Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical,1,,,yes
+JP1,Jumper_2_Open,~,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,1,,,yes
+"JP2,JP3",Jumper_3_Bridged12,~,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,2,,,yes
+R1,1.5k,~,Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal,1,,,yes
+R2,1.2k,~,Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal,1,,,yesd
+R3,500R,~,Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal,1,,,yes
+"R4,R9",330R,~,Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal,2,,,yes
+R5,0R,~,Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal,1,,,yes
+"R6,R8",10k,~,Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal,2,,,yes
+R7,120R,~,Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal,1,,,yes
+"R10,R11",4.7k,~,Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal,2,,,yes
+SW1,SW_Push,~,Button_Switch_THT:SW_PUSH_6mm,1,,,yes
+U1,LM7805_TO220,https://www.onsemi.cn/PowerSolutions/document/MC7800-D.PDF,Package_TO_SOT_THT:TO-220-3_Vertical,1,,,yes
+U2,AP2112K-3.3,https://www.diodes.com/assets/Datasheets/AP2112.pdf,Package_TO_SOT_SMD:SOT-23-5,1,,,yes
+U3,SN65HVD230,http://www.ti.com/lit/ds/symlink/sn65hvd230.pdf,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,1,,,yes
+U4,ESP32-WROOM-32E,https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf,RF_Module:ESP32-WROOM-32D,1,,C701341,yes
+U5,BME280,https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme280-ds002.pdf,Package_LGA:Bosch_LGA-8_2.5x2.5mm_P0.65mm_ClockwisePinNumbering,1,,C92489,yes
