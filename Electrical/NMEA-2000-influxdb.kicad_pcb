@@ -497,7 +497,7 @@
 			)
 		)
 		(property "Value" "Micro_SD_Card"
-			(at -0.075 9.575 180)
+			(at -0.1016 17.8054 180)
 			(layer "F.Fab")
 			(uuid "c0f99e0f-7989-420c-8b9c-dd65762f986d")
 			(effects
@@ -1961,7 +1961,7 @@
 			)
 		)
 		(property "Value" "3.3k"
-			(at 5.08 2.37 90)
+			(at 13.97 0.127 180)
 			(layer "F.Fab")
 			(uuid "90b43386-03b4-45cd-a10c-0139d0248dde")
 			(effects
@@ -2176,7 +2176,7 @@
 			(uuid "9f518b4d-b78f-44d7-8f23-be78ef52d7f6")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 5.08 0 90)
+			(at 5.08 0 180)
 			(layer "F.Fab")
 			(uuid "c77615f2-6d6d-4d2f-963c-5c08d3be7ca5")
 			(effects
@@ -2786,7 +2786,7 @@
 			)
 		)
 		(property "Value" "Conn_01x04"
-			(at 4.05 4.35 -90)
+			(at 10.404 0.046 0)
 			(layer "F.Fab")
 			(uuid "9cd7bd57-a66d-41b3-910a-d4afd0b8e1ac")
 			(effects
@@ -3051,7 +3051,7 @@
 			(uuid "975cfc54-c3f2-4d0b-b535-f8b001fa5ebc")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 1.85 -1.75 -90)
+			(at 10.404 -5.669 0)
 			(layer "F.Fab")
 			(uuid "8d007e20-2d20-4df4-b72a-de0516bbbad7")
 			(effects
@@ -4951,7 +4951,7 @@
 			)
 		)
 		(property "Value" "22uF"
-			(at 0.75 3.25 -90)
+			(at -0.374 3.81 0)
 			(layer "F.Fab")
 			(uuid "c37f189e-c03d-400d-b237-0705dad585cb")
 			(effects
@@ -5099,8 +5099,9 @@
 			)
 		)
 		(property "Value" "Jumper_3_Bridged12"
-			(at 0 7.41 -90)
+			(at 0 7.41 270)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "7e42e24e-0235-4c02-85e7-b2d7dbf4b829")
 			(effects
 				(font
@@ -5304,7 +5305,7 @@
 			(uuid "2715dd57-a37c-4fd5-b45b-7a2804ce708f")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 2.54 0)
+			(at -0.0762 -3.287 0)
 			(layer "F.Fab")
 			(uuid "6d442c52-971f-4f37-8db0-128ca7aed476")
 			(effects
@@ -5358,6 +5359,17 @@
 				(xyz 0 0 0)
 			)
 		)
+		(model "${KIPRJMOD}/3D-Models/Jumper.step"
+			(offset
+				(xyz 0 -1.35 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 90)
+			)
+		)
 	)
 	(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 		(layer "F.Cu")
@@ -5377,7 +5389,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 5.08 2.37 90)
+			(at -3.81 0 180)
 			(layer "F.Fab")
 			(uuid "e6deb1a2-7b0d-460a-99aa-a5b7af0fa600")
 			(effects
@@ -5592,7 +5604,7 @@
 			(uuid "81e9aa5a-7fbc-44de-aa25-d8a30719bb1a")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 5.08 0 90)
+			(at 5.08 0 180)
 			(layer "F.Fab")
 			(uuid "2c25ed65-fc90-4e50-9111-513b0d54b58f")
 			(effects
@@ -5652,7 +5664,7 @@
 			)
 		)
 		(property "Value" "Conn_02x08"
-			(at 1.27 23.88 90)
+			(at -5.7912 4.9022 180)
 			(layer "F.Fab")
 			(uuid "21c13dde-870e-4d3b-89ee-5dd39addfe51")
 			(effects
@@ -8780,8 +8792,9 @@
 			)
 		)
 		(property "Value" "Jumper_3_Bridged12"
-			(at 0 7.41 -90)
+			(at 0 17.399 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "d064dcc3-39f2-45e0-90ab-2fd040684fe2")
 			(effects
 				(font
@@ -8985,7 +8998,7 @@
 			(uuid "7bbd7ffa-99a5-4b1b-9a42-23a34151d699")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 2.54 0)
+			(at 0 -3.556 0)
 			(layer "F.Fab")
 			(uuid "9227c173-5292-4b71-b19e-19923cb6448f")
 			(effects
@@ -9037,6 +9050,17 @@
 			)
 			(rotate
 				(xyz 0 0 0)
+			)
+		)
+		(model "${KIPRJMOD}/3D-Models/Jumper.step"
+			(offset
+				(xyz 0 -3.9 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 -90)
 			)
 		)
 	)
@@ -10482,7 +10506,7 @@
 			)
 		)
 		(property "Value" "0.1uF"
-			(at 2.5 2.5 0)
+			(at -3.469 0 0)
 			(layer "F.Fab")
 			(uuid "eacde002-9ac1-48b2-b1d1-603dda3117ef")
 			(effects
@@ -10737,7 +10761,7 @@
 			)
 		)
 		(property "Value" "Conn_01x03"
-			(at 0 7.41 90)
+			(at 3.048 3.048 180)
 			(layer "F.Fab")
 			(uuid "a4f352c6-285b-4e9d-9ab4-21932f370a13")
 			(effects
@@ -11015,7 +11039,7 @@
 			)
 		)
 		(property "Value" "0.1uF"
-			(at 2.5 2.5 0)
+			(at -3.342 0 0)
 			(layer "F.Fab")
 			(uuid "261d0018-013c-4ebf-b320-7b1d246d7c28")
 			(effects
@@ -11270,7 +11294,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 5.08 2.37 0)
+			(at 12.954 0 0)
 			(layer "F.Fab")
 			(uuid "c40dee1f-1346-4850-84da-f6980127858d")
 			(effects
@@ -11800,7 +11824,7 @@
 			)
 		)
 		(property "Value" "0.1nF"
-			(at 2.5 2.5 0)
+			(at 11.771 0 0)
 			(layer "F.Fab")
 			(uuid "805b9bd0-ba7b-41dd-921f-e3a5a4aae761")
 			(effects
@@ -12228,7 +12252,7 @@
 			)
 		)
 		(property "Value" "Jumper_2_Open"
-			(at 0 4.87 90)
+			(at -2.667 1.397 0)
 			(layer "F.Fab")
 			(uuid "0d18cfe3-fa41-43fb-8b74-e00130c20ff2")
 			(effects
@@ -12643,7 +12667,7 @@
 			)
 		)
 		(property "Value" "Polyfuse"
-			(at 0 2.28 0)
+			(at 0 -3.429 0)
 			(layer "F.Fab")
 			(uuid "322f9819-fc29-4bc7-9d27-38b17f7376a7")
 			(effects
@@ -13131,7 +13155,7 @@
 			)
 		)
 		(property "Value" "Conn_01x04"
-			(at -4.38 10.39 -90)
+			(at 3.302 5.715 0)
 			(layer "F.Fab")
 			(uuid "4c820188-ac9f-4902-ae00-cd70a5e9f863")
 			(effects
@@ -13860,7 +13884,7 @@
 			)
 		)
 		(property "Value" "SW_Push"
-			(at 3.75 6.7 0)
+			(at 3.885 -7.529 0)
 			(layer "F.Fab")
 			(uuid "3b695a24-4937-42f8-a42a-38d44d67084d")
 			(effects
@@ -14219,7 +14243,7 @@
 			)
 		)
 		(property "Value" "BMP280"
-			(at 0 3.1 0)
+			(at -5.293 0.038 0)
 			(layer "F.Fab")
 			(uuid "833dd542-3aa1-45d4-aee0-b51f819d467d")
 			(effects
