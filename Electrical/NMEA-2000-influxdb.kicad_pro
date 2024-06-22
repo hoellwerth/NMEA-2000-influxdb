@@ -48,7 +48,7 @@
         "silk_text_thickness": 0.15,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.5
+          "min_clearance": 0.75
         }
       },
       "diff_pair_dimensions": [
@@ -79,6 +79,7 @@
         "footprint_type_mismatch": "warning",
         "hole_clearance": "error",
         "hole_near_hole": "error",
+        "holes_co_located": "warning",
         "invalid_outline": "error",
         "isolated_copper": "warning",
         "item_on_disabled_layer": "error",
@@ -115,7 +116,7 @@
       },
       "rules": {
         "max_error": 0.005,
-        "min_clearance": 0.3,
+        "min_clearance": 0.25,
         "min_connection": 0.2,
         "min_copper_edge_clearance": 1.0,
         "min_hole_clearance": 0.5,
@@ -498,6 +499,7 @@
   },
   "schematic": {
     "annotate_start_num": 0,
+    "bom_export_filename": "bom/NMEA-2000-influxdb.csv",
     "bom_fmt_presets": [],
     "bom_fmt_settings": {
       "field_delimiter": ",",
